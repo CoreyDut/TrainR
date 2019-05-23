@@ -1,10 +1,25 @@
 package trainr;
+
+//Popup display imports
 import javax.swing.JOptionPane;
+
+//File imports
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TrainRLogin extends javax.swing.JFrame {
     
     //Creates new login form and stores into new class instance
     static TrainRLogin l = new TrainRLogin();
+    
+    //Creates new login form and stores into new class instance
+    public TrainRBMI b = new TrainRBMI();
 
     //Creates new form TrainR
     public TrainRLogin() {
@@ -151,31 +166,55 @@ public class TrainRLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         
+        //Creates an array to store file values
+        String[] filelines;
+        filelines = new String[4];
+        //Creates a counter to append values to array
+        int i = 0;
+            
+        // Pulls/find the text file to get values
+        File file = new File("SignUp.txt");
+
+        //Sets reader for the file and reads it
+        BufferedReader br = null; 
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TrainRLogin.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+        
+        //String to temp store file lines into
+        String st;
+        try {
+            //Reads all lines up until there are no more lines
+            while ((st = br.readLine()) != null){
+                //Stores file lines into array
+                filelines[i] = st;
+                i += 1;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TrainRLogin.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+        
         //Create boolean to show if there are errors
         boolean error = false;
         
-        /*Limits between 6-15 characters, allowing numbers and 
-          lower, upper case letters. */
-        if(!txtUser.getText().matches("^[a-zA-Z0-9]{6,15}$")){
+        //This checks to see if user in file matches user in textbox
+        if(!filelines[2].equals(txtUserLogin.getText())){
             /*Displays popup message that there is an invalid username
-              The invalid username will contain a field that is not listed in
-              above comment.*/
+              The invalid username will not match.*/
             JOptionPane.showMessageDialog(null,
                     "Please enter a valid username!");
             //This shows that there is an error
             error = true;
+
         
-            
-        //TODO - grab saved password and check to typed password from textbox.
-        
-        /*Limits between 8-15 characters, must have at least one
-          lower and upper case letter, special character "@","#","$","%","^",
-          "&","+","=","!", no space, and one number. */
-        } if(!txtPassword.getText().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
-                + "(?=.*[@#$%^&+=!])(?=\\S+$).{8,15}$")){
+        //This checks to see if password in file matches password in textbox
+        } if(!filelines[3].equals(txtPasswordLogin.getText())){
             /*Displays popup message that there is an invalid password
-              The invalid password will contain a field that is not listed in
-              above comment.*/
+              The invalid password will not match.*/
             JOptionPane.showMessageDialog(null,
                     "Please enter a valid password!");
             //This shows that there is an error
@@ -185,9 +224,8 @@ public class TrainRLogin extends javax.swing.JFrame {
         } if (error == false){
             //This will get rid of the login form
             l.dispose();
-            //This will create a new main form that opens
-            TrainRBMI m = new TrainRBMI();
-            m.setVisible(true);
+            //This will open bmi form
+            b.setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -234,7 +272,8 @@ public class TrainRLogin extends javax.swing.JFrame {
         /*Limits between 8-15 characters, must have at least one
           lower and upper case letter, special character "@","#","$","%","^",
           "&","+","=","!", no space, and one number. */
-        }else if(!txtPassword.getText().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
+        }else if(!txtPassword.getText().matches("^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
                 + "(?=.*[@#$%^&+=!])(?=\\S+$).{8,15}$")){
             /*Displays popup message that there is an invalid password
               The invalid password will contain a field that is not listed in
@@ -254,10 +293,27 @@ public class TrainRLogin extends javax.swing.JFrame {
         if (error == false){
             //This will get rid of the login form
             l.dispose();
-            //This will create a new bmi form that opens
-            TrainRBMI m = new TrainRBMI();
-            m.setVisible(true);
+            //This will open bmi form
+            b.setVisible(true);
         }
+        
+        //This will save the text information into a file
+        PrintWriter printWriter = null;
+        
+        try {
+            //Creates new file
+            printWriter = new PrintWriter("SignUp.txt");
+            
+            //Takes in all textbox fields and saves into file
+            printWriter.println(txtName.getText());
+            printWriter.println(txtEmail.getText());
+            printWriter.println(txtUser.getText());
+            printWriter.print(txtPassword.getText());
+            
+            printWriter.close ();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     //Main class to run program
