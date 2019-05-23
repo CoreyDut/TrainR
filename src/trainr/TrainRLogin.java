@@ -1,10 +1,10 @@
 package trainr;
-
 import javax.swing.JOptionPane;
 
 public class TrainRLogin extends javax.swing.JFrame {
     
-    static TrainRLogin s = new TrainRLogin();
+    //Creates new login form and stores into new class instance
+    static TrainRLogin l = new TrainRLogin();
 
     //Creates new form TrainR
     public TrainRLogin() {
@@ -101,11 +101,6 @@ public class TrainRLogin extends javax.swing.JFrame {
         txtName.setName("txtName"); // NOI18N
         txtName.setNextFocusableComponent(lblEmail);
         txtName.setPreferredSize(new java.awt.Dimension(7, 25));
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtName);
         txtName.setBounds(100, 50, 100, 30);
 
@@ -116,11 +111,6 @@ public class TrainRLogin extends javax.swing.JFrame {
 
         txtEmail.setName("txtEmail"); // NOI18N
         txtEmail.setNextFocusableComponent(lblUser);
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtEmail);
         txtEmail.setBounds(100, 100, 150, 30);
 
@@ -137,11 +127,6 @@ public class TrainRLogin extends javax.swing.JFrame {
         txtPassword.setFont(new java.awt.Font("Symbol", 0, 10)); // NOI18N
         txtPassword.setName("txtPassword"); // NOI18N
         txtPassword.setNextFocusableComponent(btnSubmit);
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtPassword);
         txtPassword.setBounds(100, 200, 150, 30);
 
@@ -199,9 +184,9 @@ public class TrainRLogin extends javax.swing.JFrame {
         //If there are not any errors then it will continue to the next form.
         } if (error == false){
             //This will get rid of the login form
-            s.dispose();
+            l.dispose();
             //This will create a new main form that opens
-            TrainRHome m = new TrainRHome();
+            TrainRBMI m = new TrainRBMI();
             m.setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -268,30 +253,16 @@ public class TrainRLogin extends javax.swing.JFrame {
         //If there are not any errors then it will continue to the next form.
         if (error == false){
             //This will get rid of the login form
-            s.dispose();
-            //This will create a new main form that opens
-            TrainRHome m = new TrainRHome();
+            l.dispose();
+            //This will create a new bmi form that opens
+            TrainRBMI m = new TrainRBMI();
             m.setVisible(true);
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        //TODO
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    //Main class to run program
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -313,13 +284,11 @@ public class TrainRLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrainRLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+        // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //created new instance of class above
-                s.setVisible(true);
+                l.setVisible(true);
             }
         });
     }
