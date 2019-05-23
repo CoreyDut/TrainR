@@ -1,10 +1,16 @@
 package trainr;
 import java.text.DecimalFormat;
+//Imports TrainRLogin Class from different file.
+import trainr.TrainRLogin;
 
 public class TrainRBMI extends javax.swing.JFrame {
-
-    //Creates new bmi form and stores into new class instance
-    static TrainRBMI b = new TrainRBMI();
+    
+    /*Gets new instance of TrainRLogin class so it can be referenced 
+    in this class.*/
+    static TrainRLogin TrainRLogin = new TrainRLogin();
+    
+    //Creates new home form and stores into new class instance
+    public TrainRHome h = new TrainRHome();
     
     //Creates new form TrainRBMI
     public TrainRBMI() {
@@ -73,7 +79,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCalculate);
-        btnCalculate.setBounds(110, 130, 80, 30);
+        btnCalculate.setBounds(100, 130, 90, 30);
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +92,11 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         jLabel5.setText("Weight:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 10, 40, 30);
+        jLabel5.setBounds(10, 10, 50, 30);
 
         jLabel6.setText("Height:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 70, 40, 30);
+        jLabel6.setBounds(10, 70, 50, 30);
 
         lblBMI.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMI.setText("0");
@@ -104,7 +110,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnContinue);
-        btnContinue.setBounds(390, 300, 100, 40);
+        btnContinue.setBounds(470, 320, 110, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,10 +149,10 @@ public class TrainRBMI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
+        //TODO - Does not dispose correctly        
         //This will get rid of the bmi form
-        b.dispose();
-        //This will create a new main form that opens
-        TrainRHome h = new TrainRHome();
+        TrainRLogin.b.dispose();
+        //This will open main form
         h.setVisible(true);
     }//GEN-LAST:event_btnContinueActionPerformed
 
@@ -177,7 +183,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                b.setVisible(true);
+                TrainRLogin.b.setVisible(true);
             }
         });
     }
