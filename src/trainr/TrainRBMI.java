@@ -10,7 +10,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     static TrainRLogin TrainRLogin = new TrainRLogin();
     
     //Creates new home form and stores into new class instance
-    public TrainRHome h = new TrainRHome();
+    //public TrainRHome h = new TrainRHome();
     
     //Creates new form TrainRBMI
     public TrainRBMI() {
@@ -151,9 +151,11 @@ public class TrainRBMI extends javax.swing.JFrame {
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
         //TODO - Does not dispose correctly        
         //This will get rid of the bmi form
-        TrainRLogin.b.dispose();
+        //setVisible(false);
+        
         //This will open main form
-        h.setVisible(true);
+        new TrainRHome().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnContinueActionPerformed
 
     //Main class to run program
@@ -183,7 +185,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TrainRLogin.b.setVisible(true);
+                new TrainRBMI().setVisible(true);
             }
         });
     }
