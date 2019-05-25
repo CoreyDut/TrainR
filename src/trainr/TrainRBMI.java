@@ -35,6 +35,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         txtAge = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        lblBMR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
@@ -48,7 +49,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setName("lblBMI"); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 260, 50, 29);
+        jLabel1.setBounds(20, 240, 50, 29);
 
         txtPounds.setName("weight"); // NOI18N
         getContentPane().add(txtPounds);
@@ -101,7 +102,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblBMI.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(80, 260, 60, 30);
+        lblBMI.setBounds(80, 230, 60, 50);
 
         btnContinue.setText("Continue --->");
         btnContinue.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +149,12 @@ public class TrainRBMI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("BMR:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(20, 300, 70, 40);
+        jLabel7.setBounds(10, 280, 70, 40);
+
+        lblBMR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblBMR.setText("0");
+        getContentPane().add(lblBMR);
+        lblBMR.setBounds(80, 280, 80, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -183,6 +189,9 @@ public class TrainRBMI extends javax.swing.JFrame {
         double BMR = bmr1 + (bmr2 * weightEntered) + (bmr3 * totalHeight) - 
                 (bmr4 * age);  //calculator for the BMR
         
+        String fmt2 = dmft.format(BMR);
+        lblBMR.setText(fmt2);
+        
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -192,7 +201,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         txtHeightFeet.setText("");
         txtHeightInch.setText("");
         txtAge.setText("");
-        
+        lblBMR.setText("0");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
@@ -269,6 +278,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblBMI;
+    private javax.swing.JLabel lblBMR;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtHeightFeet;
     private javax.swing.JTextField txtHeightInch;
