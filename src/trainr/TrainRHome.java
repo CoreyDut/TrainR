@@ -1,9 +1,12 @@
 package trainr;
+//Imports TrainRLogin Class from different file.
+import trainr.TrainRBMI;
 
 public class TrainRHome extends javax.swing.JFrame {
 
-    //Creates new home form and stores into new class instance
-    static TrainRHome h = new TrainRHome();
+    /*Gets new instance of TrainRBMI class so it can be referenced 
+    in this class.*/
+    static TrainRBMI TrainRBMI = new TrainRBMI();
     
     // Creates new form TrainRHome
     public TrainRHome() {
@@ -26,7 +29,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         jLabel1.setText("STAGE 3 / MAIN PAGE");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(170, 200, 120, 55);
+        jLabel1.setBounds(170, 200, 160, 55);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -58,7 +61,7 @@ public class TrainRHome extends javax.swing.JFrame {
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                h.setVisible(true);
+               new TrainRHome().setVisible(true);
             }
         });
     }
