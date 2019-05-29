@@ -30,8 +30,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         lblBMI = new javax.swing.JLabel();
         btnContinue = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        maleRadiobtn = new javax.swing.JRadioButton();
+        femaleRadiobtn = new javax.swing.JRadioButton();
         txtAge = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCalculate);
-        btnCalculate.setBounds(140, 140, 80, 30);
+        btnCalculate.setBounds(140, 140, 100, 30);
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -113,25 +113,25 @@ public class TrainRBMI extends javax.swing.JFrame {
         getContentPane().add(btnContinue);
         btnContinue.setBounds(390, 300, 100, 40);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Male");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(maleRadiobtn);
+        maleRadiobtn.setText("Male");
+        maleRadiobtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                maleRadiobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(250, 20, 110, 21);
+        getContentPane().add(maleRadiobtn);
+        maleRadiobtn.setBounds(250, 20, 110, 21);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Female");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(femaleRadiobtn);
+        femaleRadiobtn.setText("Female");
+        femaleRadiobtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                femaleRadiobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(250, 50, 150, 21);
+        getContentPane().add(femaleRadiobtn);
+        femaleRadiobtn.setBounds(250, 50, 150, 21);
 
         txtAge.setName("txtAge"); // NOI18N
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -186,8 +186,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         //calculating BMR
         
         int age = 0; //initializing age
-        double BMR = bmr1 + (bmr2 * weightEntered) + (bmr3 * totalHeight) - 
-                (bmr4 * age);  //calculator for the BMR
+        double BMR = (10 * weightEntered) + (625 * totalHeight) - (5 * age) + gen; //calculator for the BMR
         
         String fmt2 = dmft.format(BMR);
         lblBMR.setText(fmt2);
@@ -212,19 +211,13 @@ public class TrainRBMI extends javax.swing.JFrame {
         h.setVisible(true);
     }//GEN-LAST:event_btnContinueActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        bmr1 = 655.1;
-        bmr2 = 9.6;
-        bmr3 = 1.8;
-        bmr4 = 4.7;
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void femaleRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRadiobtnActionPerformed
+    gen = -161;
+    }//GEN-LAST:event_femaleRadiobtnActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        bmr1 = 66.47;
-        bmr2 = 13.7;
-        bmr3 = 5;
-        bmr4 = 6.8;
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void maleRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleRadiobtnActionPerformed
+       gen = 5;
+    }//GEN-LAST:event_maleRadiobtnActionPerformed
 
     private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
         // TODO add your handling code here:
@@ -268,6 +261,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnContinue;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton femaleRadiobtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -275,14 +269,13 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblBMI;
     private javax.swing.JLabel lblBMR;
+    private javax.swing.JRadioButton maleRadiobtn;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtHeightFeet;
     private javax.swing.JTextField txtHeightInch;
     private javax.swing.JTextField txtPounds;
     // End of variables declaration//GEN-END:variables
-    double bmr1,bmr2,bmr3,bmr4;
+    double gen;
 }
