@@ -33,9 +33,11 @@ public class TrainRBMI extends javax.swing.JFrame {
         maleRadiobtn = new javax.swing.JRadioButton();
         femaleRadiobtn = new javax.swing.JRadioButton();
         txtAge = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblAge = new javax.swing.JLabel();
+        lblBMR2 = new javax.swing.JLabel();
         lblBMR = new javax.swing.JLabel();
+        lblRange = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
@@ -59,6 +61,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         getContentPane().add(txtHeightFeet);
         txtHeightFeet.setBounds(60, 80, 50, 30);
 
+        txtHeightInch.setText("0");
         txtHeightInch.setName("heightInInches"); // NOI18N
         getContentPane().add(txtHeightInch);
         txtHeightInch.setBounds(140, 80, 50, 30);
@@ -142,19 +145,28 @@ public class TrainRBMI extends javax.swing.JFrame {
         getContentPane().add(txtAge);
         txtAge.setBounds(150, 20, 60, 30);
 
-        jLabel2.setText("Age");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(120, 20, 31, 13);
+        lblAge.setText("Age");
+        getContentPane().add(lblAge);
+        lblAge.setBounds(120, 20, 31, 13);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel7.setText("BMR:");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 280, 70, 40);
+        lblBMR2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblBMR2.setText("BMR:");
+        getContentPane().add(lblBMR2);
+        lblBMR2.setBounds(10, 280, 70, 40);
 
         lblBMR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
         lblBMR.setBounds(80, 280, 80, 40);
+
+        lblRange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(lblRange);
+        lblRange.setBounds(250, 190, 240, 40);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("NOTE: The normal range BMI is 18.5 - 24.9");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(270, 120, 250, 70);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,6 +203,16 @@ public class TrainRBMI extends javax.swing.JFrame {
         String fmt2 = dmft.format(BMR);
         lblBMR.setText(fmt2);
         
+        if(BMI < 18.5){                             //tells user if theyre under, over, or at a normal weight
+            lblRange.setText("You are Underweight");
+        }
+        else if(BMI >= 25){
+            lblRange.setText("You are Overweight");
+        }
+        else{
+            lblRange.setText("You are at a normal weight");
+        }
+        
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -198,9 +220,11 @@ public class TrainRBMI extends javax.swing.JFrame {
         txtPounds.setText("");
         lblBMI.setText("0");
         txtHeightFeet.setText("");
-        txtHeightInch.setText("");
+        txtHeightInch.setText("0");
         txtAge.setText("");
         lblBMR.setText("0");
+        lblRange.setText("");
+        
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
@@ -268,9 +292,11 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblBMI;
     private javax.swing.JLabel lblBMR;
+    private javax.swing.JLabel lblBMR2;
+    private javax.swing.JLabel lblRange;
     private javax.swing.JRadioButton maleRadiobtn;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtHeightFeet;
