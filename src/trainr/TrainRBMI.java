@@ -37,7 +37,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblBMR2 = new javax.swing.JLabel();
         lblBMR = new javax.swing.JLabel();
         lblRange = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNormalRange = new javax.swing.JLabel();
+        comboActivityLevel = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
@@ -124,7 +125,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(maleRadiobtn);
-        maleRadiobtn.setBounds(250, 20, 110, 23);
+        maleRadiobtn.setBounds(250, 20, 80, 21);
 
         buttonGroup1.add(femaleRadiobtn);
         femaleRadiobtn.setText("Female");
@@ -134,7 +135,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(femaleRadiobtn);
-        femaleRadiobtn.setBounds(250, 50, 150, 23);
+        femaleRadiobtn.setBounds(250, 50, 150, 21);
 
         txtAge.setName("txtAge"); // NOI18N
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +148,7 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         lblAge.setText("Age");
         getContentPane().add(lblAge);
-        lblAge.setBounds(120, 20, 31, 14);
+        lblAge.setBounds(120, 20, 31, 13);
 
         lblBMR2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR2.setText("BMR:");
@@ -163,10 +164,19 @@ public class TrainRBMI extends javax.swing.JFrame {
         getContentPane().add(lblRange);
         lblRange.setBounds(250, 190, 240, 40);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("NOTE: The normal range BMI is 18.5 - 24.9");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(270, 120, 250, 70);
+        lblNormalRange.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNormalRange.setText("NOTE: The normal range BMI is 18.5 - 24.9");
+        getContentPane().add(lblNormalRange);
+        lblNormalRange.setBounds(270, 120, 250, 70);
+
+        comboActivityLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sedentary", "slightly active", "active", "extremely active" }));
+        comboActivityLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboActivityLevelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboActivityLevel);
+        comboActivityLevel.setBounds(340, 20, 80, 19);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -247,6 +257,10 @@ public class TrainRBMI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgeActionPerformed
 
+    private void comboActivityLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActivityLevelActionPerformed
+           // TODO add your handling code here:
+    }//GEN-LAST:event_comboActivityLevelActionPerformed
+
     //Main class to run program
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -285,9 +299,9 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnContinue;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> comboActivityLevel;
     private javax.swing.JRadioButton femaleRadiobtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -296,6 +310,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JLabel lblBMI;
     private javax.swing.JLabel lblBMR;
     private javax.swing.JLabel lblBMR2;
+    private javax.swing.JLabel lblNormalRange;
     private javax.swing.JLabel lblRange;
     private javax.swing.JRadioButton maleRadiobtn;
     private javax.swing.JTextField txtAge;
