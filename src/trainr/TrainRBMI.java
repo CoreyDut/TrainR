@@ -124,7 +124,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(maleRadiobtn);
-        maleRadiobtn.setBounds(250, 20, 110, 21);
+        maleRadiobtn.setBounds(250, 20, 110, 23);
 
         buttonGroup1.add(femaleRadiobtn);
         femaleRadiobtn.setText("Female");
@@ -134,7 +134,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(femaleRadiobtn);
-        femaleRadiobtn.setBounds(250, 50, 150, 21);
+        femaleRadiobtn.setBounds(250, 50, 150, 23);
 
         txtAge.setName("txtAge"); // NOI18N
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         lblAge.setText("Age");
         getContentPane().add(lblAge);
-        lblAge.setBounds(120, 20, 31, 13);
+        lblAge.setBounds(120, 20, 31, 14);
 
         lblBMR2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR2.setText("BMR:");

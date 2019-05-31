@@ -5,6 +5,8 @@
  */
 package trainr;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author kaladin
@@ -14,8 +16,9 @@ public class TrainR {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
+    traindb dr=new traindb();
     }
     
 }
