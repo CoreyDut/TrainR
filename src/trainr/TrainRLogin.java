@@ -18,8 +18,11 @@ public class TrainRLogin extends javax.swing.JFrame {
     //Creates new login form and stores into new class instance
     static TrainRLogin l = new TrainRLogin();
     
-    //Creates new login form and stores into new class instance
+    //Creates new BMI form and stores into new class instance
     public TrainRBMI b = new TrainRBMI();
+    
+    //Creates new home form and stores into new class instance
+    public TrainRHome h = new TrainRHome();
 
     //Creates new form TrainR
     public TrainRLogin() {
@@ -171,13 +174,12 @@ public class TrainRLogin extends javax.swing.JFrame {
         filelines = new String[4];
         //Creates a counter to append values to array
         int i = 0;
-            
-        // Pulls/find the text file to get values
-        File file = new File("SignUp.txt");
 
         //Sets reader for the file and reads it
         BufferedReader br = null; 
         try {
+            // Pulls/find the text file to get values
+            File file = new File("SignUp" + "_" + txtUserLogin.getText() + ".txt");
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TrainRLogin.class.getName())
@@ -194,8 +196,10 @@ public class TrainRLogin extends javax.swing.JFrame {
                 i += 1;
             }
         } catch (IOException ex) {
-            Logger.getLogger(TrainRLogin.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            /*Displays popup message that there is an invalid username
+              becuase they can not find file or one doesn't match.*/
+            JOptionPane.showMessageDialog(null,
+                    "Please enter a valid username!");
         }
         
         //Create boolean to show if there are errors
@@ -225,7 +229,7 @@ public class TrainRLogin extends javax.swing.JFrame {
             //This will get rid of the login form
             l.dispose();
             //This will open bmi form
-            b.setVisible(true);
+            h.setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -301,8 +305,8 @@ public class TrainRLogin extends javax.swing.JFrame {
         PrintWriter printWriter = null;
         
         try {
-            //Creates new file
-            printWriter = new PrintWriter("SignUp.txt");
+            //Creates new file each time
+            printWriter = new PrintWriter("SignUp" + "_" + txtUser.getText() + ".txt");
             
             //Takes in all textbox fields and saves into file
             printWriter.println(txtName.getText());
