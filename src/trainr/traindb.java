@@ -17,10 +17,10 @@ import java.sql.SQLException;
 class traindb {
     public traindb() throws SQLException
     {
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/traindb","trainrdb","trainrdb");
-        PreparedStatement st= con.prepareStatement("insert into traindb(ID,first_name)values(?,?)");
-        st.setInt(1, 101);
-        st.setString(2,"jacob");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
+        PreparedStatement st= con.prepareStatement("insert into trainlogin(username,fullname)values(?,?)");
+        st.setString(1, "david115");
+        st.setString(2,"jacob camp");
         int a =st.executeUpdate();
         if(a>0)
         {
