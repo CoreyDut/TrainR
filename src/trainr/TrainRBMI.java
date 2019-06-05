@@ -162,7 +162,7 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         lblRange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(lblRange);
-        lblRange.setBounds(250, 190, 240, 40);
+        lblRange.setBounds(260, 190, 240, 40);
 
         lblNormalRange.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNormalRange.setText("NOTE: The normal range BMI is 18.5 - 24.9");
@@ -176,7 +176,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboActivityLevel);
-        comboActivityLevel.setBounds(340, 20, 80, 19);
+        comboActivityLevel.setBounds(340, 20, 130, 19);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,7 +196,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         totalHeight /= 3.281; //converts to meters
         
         //calculates bmi
-        double BMI = (weightEntered / Math.pow(totalHeight, 2));
+        BMI = (weightEntered / Math.pow(totalHeight, 2));
         
         //formats bmi to one decimal
         DecimalFormat dmft = new DecimalFormat("##.#");
@@ -210,6 +210,21 @@ public class TrainRBMI extends javax.swing.JFrame {
         int age = 0; //initializing age
         double BMR = (10 * weightEntered) + (625 * totalHeight) - (5 * age) + gen; //calculator for the BMR
         
+        switch(comboActivityLevel.getSelectedItem().toString()){  //calculating activity level of the person and 
+            case "sedentary":                                    // adding it to the BMR
+               BMR *= 1.2;
+               break;
+            case "slightly active":
+                BMR *= 1.375;
+                break;
+            case "active":
+                BMR *= 1.55;
+                break;
+            case "extremely active":
+                BMR *= 1.725;
+                break;
+       }
+        
         String fmt2 = dmft.format(BMR);
         lblBMR.setText(fmt2);
         
@@ -222,7 +237,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         else{
             lblRange.setText("You are at a normal weight");
         }
-        
+               
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -234,6 +249,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         txtAge.setText("");
         lblBMR.setText("0");
         lblRange.setText("");
+        comboActivityLevel.setSelectedItem(null);
         
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -258,7 +274,9 @@ public class TrainRBMI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAgeActionPerformed
 
     private void comboActivityLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActivityLevelActionPerformed
-           // TODO add your handling code here:
+             
+       
+        
     }//GEN-LAST:event_comboActivityLevelActionPerformed
 
     //Main class to run program
@@ -319,4 +337,5 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JTextField txtPounds;
     // End of variables declaration//GEN-END:variables
     double gen;
+    double BMI;
 }
