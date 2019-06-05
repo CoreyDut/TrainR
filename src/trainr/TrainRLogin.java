@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -318,6 +322,37 @@ public class TrainRLogin extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        //Start of Database portion of this class 
+       //this is the declaration of which values go to which dataset
+       String username= txtUser.getText();
+       String password= txtPassword.getText();
+       String fullname= txtName.getText();
+       String email= txtEmail.getText();
+       PreparedStatement st= null;
+       Connection conn= null;
+       //end of declaration 
+       
+       //this inserts data, catches any errors that are thrown, and establishes a connection to the DB 
+       try {
+        conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
+        st= conn.prepareStatement("insert into trainlogin(username,fullname,email,password)values(?,?,?,?)");
+        st.setString(1, username);
+        st.setString(2,fullname);
+        st.setString(3, email);
+        st.setString(4, password);
+        int a =st.executeUpdate();
+        if(a>0)
+        {
+            System.out.println("ROW UPDATE");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Data did not save");
+        }
+       } catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+       }
+       //End of Database portion of this class 
+        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     //Main class to run program
