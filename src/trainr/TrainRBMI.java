@@ -202,6 +202,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         DecimalFormat dmft = new DecimalFormat("##.#");
         String format = dmft.format(BMI);
         
+        DecimalFormat dmft1 = new DecimalFormat("#####");
+        
         //sets bmi into label
         lblBMI.setText(format);
         
@@ -225,7 +227,9 @@ public class TrainRBMI extends javax.swing.JFrame {
                 break;
        }
         
-        String fmt2 = dmft.format(BMR);
+        
+        
+        String fmt2 = dmft1.format(BMR);
         lblBMR.setText(fmt2);
         
         if(BMI < 18.5){                             //tells user if theyre under, over, or at a normal weight
