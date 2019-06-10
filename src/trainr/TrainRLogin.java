@@ -8,12 +8,18 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -172,69 +178,62 @@ public class TrainRLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+       
+        try (FileWriter filewriter = new FileWriter("keyvalue"))
         
-        //Creates an array to store file values
-        String[] filelines;
-        filelines = new String[4];
-        //Creates a counter to append values to array
-        int i = 0;
-
-        //Sets reader for the file and reads it
-        BufferedReader br = null; 
-        try {
-            // Pulls/find the text file to get values
-            File file = new File("SignUp" + "_" + txtUserLogin.getText() + ".txt");
-            br = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TrainRLogin.class.getName())
-                    .log(Level.SEVERE, null, ex);
+        {
+            Properties p = new Properties();
+            p.setProperty("key", txtUserLogin.getText());
+            p.store(filewriter, "value");
+            
+            System.out.println("Property File Created");
+        } catch (IOException ex) {    
+            Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Property File change invalid");
         }
-        
-        //String to temp store file lines into
-        String st;
-        try {
-            //Reads all lines up until there are no more lines
-            while ((st = br.readLine()) != null){
-                //Stores file lines into array
-                filelines[i] = st;
-                i += 1;
+        String primaryk= txtUserLogin.getText();
+        String username= txtUserLogin.getText();
+        String password= txtPasswordLogin.getText();
+        Connection conn= null;
+        Statement stmt =null;
+        ResultSet rs = null;
+        boolean error= false;
+        try{
+            int log = 1;
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
+            stmt = (Statement)conn.createStatement();
+            rs = stmt.executeQuery("select * from trainlogin");
+            
+            while (rs.next())
+            {
+               if (rs.getString(1).equals(username) && rs.getString(4).equals(password))
+                                 {
+                    log = 0;
+                   
+                    break;
+                }
             }
-        } catch (IOException ex) {
-            /*Displays popup message that there is an invalid username
-              becuase they can not find file or one doesn't match.*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid username!");
-        }
-        
-        //Create boolean to show if there are errors
-        boolean error = false;
-        
-        //This checks to see if user in file matches user in textbox
-        if(!filelines[2].equals(txtUserLogin.getText())){
-            /*Displays popup message that there is an invalid username
-              The invalid username will not match.*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid username!");
-            //This shows that there is an error
-            error = true;
-
-        
-        //This checks to see if password in file matches password in textbox
-        } if(!filelines[3].equals(txtPasswordLogin.getText())){
-            /*Displays popup message that there is an invalid password
-              The invalid password will not match.*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid password!");
-            //This shows that there is an error
-            error = true;
-        
-        //If there are not any errors then it will continue to the next form.
-        } if (error == false){
-            //This will get rid of the login form
+            
+            if (log ==0){
+            
+                //CloseMe(); //create class
+            TrainRHome b = new TrainRHome();
+            b.setVisible(true);
             l.dispose();
-            //This will open bmi form
-            h.setVisible(true);
+            
+            }
+            else  {
+        JOptionPane.showMessageDialog(null,"Password/username is incorrect","Login System",JOptionPane.ERROR_MESSAGE);
+        txtUserLogin.setText("");
+        txtPasswordLogin.setText("");
+        //txtusername.setText("");
+        
         }
+        }
+            catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+            }
+        //If there are not any errors then it will continue to the next form. 
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed

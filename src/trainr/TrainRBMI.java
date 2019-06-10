@@ -1,5 +1,10 @@
-package trainr;
+ package trainr;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 public class TrainRBMI extends javax.swing.JFrame {
 
@@ -269,7 +274,30 @@ public class TrainRBMI extends javax.swing.JFrame {
         else{
             lblRange.setText("You are at a normal weight");
         }
-               
+       //Start of Database integration  
+       String BMIDB= lblBMI.getText();
+       String BMRDB= lblBMR.getText();
+       PreparedStatement st= null;
+       Connection conn= null;
+        
+       try {
+        conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
+        st= conn.prepareStatement("insert into trainlogin(BMIDB,BMRDB)values(?,?)");
+        st.setString(1, BMIDB);
+        st.setString(2,BMRDB);
+        int a =st.executeUpdate();
+        if(a>0)
+        {
+            System.out.println("ROW UPDATE");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Data did not save");
+        }
+       } catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+       } 
+        
+        
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed

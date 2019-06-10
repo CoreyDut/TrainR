@@ -114,19 +114,19 @@ public class TrainRHome extends javax.swing.JFrame {
 
         lblCal.setText("Kcal.");
         getContentPane().add(lblCal);
-        lblCal.setBounds(310, 10, 31, 13);
+        lblCal.setBounds(310, 10, 31, 14);
 
         txtGoal.setText("jTextField1");
         getContentPane().add(txtGoal);
-        txtGoal.setBounds(240, 10, 57, 19);
+        txtGoal.setBounds(240, 10, 59, 20);
 
         lblName1.setText("NAME");
         getContentPane().add(lblName1);
-        lblName1.setBounds(10, 10, 31, 13);
+        lblName1.setBounds(10, 10, 31, 14);
 
         lblGoal.setText("Goal:");
         getContentPane().add(lblGoal);
-        lblGoal.setBounds(200, 10, 31, 13);
+        lblGoal.setBounds(200, 10, 31, 14);
 
         panSettings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -151,11 +151,11 @@ public class TrainRHome extends javax.swing.JFrame {
 
         progbar.setString("50%");
         getContentPane().add(progbar);
-        progbar.setBounds(190, 40, 146, 11);
+        progbar.setBounds(190, 40, 146, 14);
 
         lblProgress.setText("Progress:");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(130, 40, 50, 13);
+        lblProgress.setBounds(130, 40, 50, 14);
 
         lstMonday.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Monday" };
@@ -237,7 +237,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         btnNextWeek.setText("Next Week");
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(650, 460, 90, 21);
+        btnNextWeek.setBounds(650, 460, 90, 23);
 
         btnLastWeek.setText("Last Week");
         btnLastWeek.addActionListener(new java.awt.event.ActionListener() {
@@ -246,29 +246,29 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(20, 470, 80, 21);
+        btnLastWeek.setBounds(20, 470, 80, 23);
         getContentPane().add(txtCalInput);
-        txtCalInput.setBounds(350, 400, 60, 19);
+        txtCalInput.setBounds(350, 400, 60, 20);
 
         jLabel2.setText("Kcal Input:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 400, 60, 13);
+        jLabel2.setBounds(280, 400, 60, 14);
 
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(270, 480, 31, 13);
+        lblBMRInfo.setBounds(270, 480, 31, 14);
 
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(310, 480, 6, 13);
+        lblBMR.setBounds(310, 480, 6, 14);
 
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(270, 450, 22, 13);
+        lblBMIInfo.setBounds(270, 450, 22, 14);
 
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(310, 450, 6, 13);
+        lblBMI.setBounds(310, 450, 6, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
