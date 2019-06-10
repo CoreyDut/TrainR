@@ -9,6 +9,8 @@ public class TrainRBMI extends javax.swing.JFrame {
     //Creates new form TrainRBMI
     public TrainRBMI() {
         initComponents();
+        jComboMeasurements.setSelectedIndex(-1);
+        comboActivityLevel.setSelectedIndex(-1);
     }
 
     //Initialized when form and program are loaded
@@ -22,8 +24,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         txtPounds = new javax.swing.JTextField();
         txtHeightFeet = new javax.swing.JTextField();
         txtHeightInch = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblheight1 = new javax.swing.JLabel();
+        lblheight2 = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -39,11 +41,14 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblRange = new javax.swing.JLabel();
         lblNormalRange = new javax.swing.JLabel();
         comboActivityLevel = new javax.swing.JComboBox<>();
+        jComboMeasurements = new javax.swing.JComboBox<>();
+        lblWeight = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
         setName("frmTrainRHome"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 400));
         setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
@@ -56,26 +61,24 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         txtPounds.setName("weight"); // NOI18N
         getContentPane().add(txtPounds);
-        txtPounds.setBounds(60, 20, 50, 30);
+        txtPounds.setBounds(10, 50, 50, 30);
 
         txtHeightFeet.setName("heightInFeet"); // NOI18N
         getContentPane().add(txtHeightFeet);
-        txtHeightFeet.setBounds(60, 80, 50, 30);
+        txtHeightFeet.setBounds(10, 110, 50, 30);
 
         txtHeightInch.setText("0");
         txtHeightInch.setName("heightInInches"); // NOI18N
         getContentPane().add(txtHeightInch);
-        txtHeightInch.setBounds(140, 80, 50, 30);
+        txtHeightInch.setBounds(100, 110, 50, 30);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Ft");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(120, 80, 20, 30);
+        lblheight1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(lblheight1);
+        lblheight1.setBounds(70, 110, 20, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("In");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 80, 20, 30);
+        lblheight2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(lblheight2);
+        lblheight2.setBounds(160, 110, 20, 30);
 
         btnCalculate.setText("Calculate");
         btnCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +87,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCalculate);
-        btnCalculate.setBounds(140, 140, 100, 30);
+        btnCalculate.setBounds(130, 180, 100, 30);
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -93,15 +96,15 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnClear);
-        btnClear.setBounds(30, 140, 80, 30);
+        btnClear.setBounds(20, 180, 80, 30);
 
         jLabel5.setText("Weight");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 10, 40, 30);
+        jLabel5.setBounds(10, 20, 40, 30);
 
         jLabel6.setText("Height");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 70, 40, 30);
+        jLabel6.setBounds(10, 80, 40, 30);
 
         lblBMI.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMI.setText("0");
@@ -125,7 +128,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(maleRadiobtn);
-        maleRadiobtn.setBounds(250, 20, 80, 21);
+        maleRadiobtn.setBounds(230, 60, 80, 20);
 
         buttonGroup1.add(femaleRadiobtn);
         femaleRadiobtn.setText("Female");
@@ -135,7 +138,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(femaleRadiobtn);
-        femaleRadiobtn.setBounds(250, 50, 150, 21);
+        femaleRadiobtn.setBounds(230, 90, 120, 20);
 
         txtAge.setName("txtAge"); // NOI18N
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -144,16 +147,16 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtAge);
-        txtAge.setBounds(150, 20, 60, 30);
+        txtAge.setBounds(100, 50, 50, 30);
 
         lblAge.setText("Age");
         getContentPane().add(lblAge);
-        lblAge.setBounds(120, 20, 31, 13);
+        lblAge.setBounds(100, 30, 30, 13);
 
         lblBMR2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR2.setText("BMR:");
         getContentPane().add(lblBMR2);
-        lblBMR2.setBounds(10, 280, 70, 40);
+        lblBMR2.setBounds(20, 280, 60, 40);
 
         lblBMR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR.setText("0");
@@ -162,12 +165,12 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         lblRange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(lblRange);
-        lblRange.setBounds(260, 190, 240, 40);
+        lblRange.setBounds(240, 240, 240, 40);
 
         lblNormalRange.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNormalRange.setText("NOTE: The normal range BMI is 18.5 - 24.9");
         getContentPane().add(lblNormalRange);
-        lblNormalRange.setBounds(270, 120, 250, 70);
+        lblNormalRange.setBounds(240, 190, 250, 50);
 
         comboActivityLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sedentary", "slightly active", "active", "extremely active" }));
         comboActivityLevel.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +179,29 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboActivityLevel);
-        comboActivityLevel.setBounds(340, 20, 130, 19);
+        comboActivityLevel.setBounds(280, 140, 130, 19);
+
+        jComboMeasurements.setMaximumRowCount(2);
+        jComboMeasurements.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metric", "Imperial" }));
+        jComboMeasurements.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboMeasurementsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboMeasurements);
+        jComboMeasurements.setBounds(290, 20, 80, 20);
+        getContentPane().add(lblWeight);
+        lblWeight.setBounds(70, 50, 30, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Choose Units first:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(170, 20, 120, 20);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Activity Level:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(180, 140, 100, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -188,14 +213,17 @@ public class TrainRBMI extends javax.swing.JFrame {
         double weightEntered =  Double.parseDouble(txtPounds.getText());
         double heightInFeet = Double.parseDouble(txtHeightFeet.getText());
         double heightInInches = Double.parseDouble(txtHeightInch.getText());
-        
-        
+        double totalHeight = 0; 
+        if (jComboMeasurements.getSelectedIndex() == 1){
         weightEntered /= 2.205; //converts pounds to kg
-        heightInInches /= 12; //inches to feet in decimal form
-        double totalHeight = heightInFeet + heightInInches;
+        heightInInches /= 12; //inches to feet in decimal form  
+        totalHeight = heightInFeet + heightInInches;
         totalHeight /= 3.281; //converts to meters
-        
+        }
         //calculates bmi
+        else if(jComboMeasurements.getSelectedIndex() == 0){
+            totalHeight = heightInFeet; //keeps meters to total height
+        }
         BMI = (weightEntered / Math.pow(totalHeight, 2));
         
         //formats bmi to one decimal
@@ -254,6 +282,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblBMR.setText("0");
         lblRange.setText("");
         comboActivityLevel.setSelectedItem(null);
+        buttonGroup1.clearSelection();
+        jComboMeasurements.setSelectedItem(null);
         
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -282,6 +312,20 @@ public class TrainRBMI extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_comboActivityLevelActionPerformed
+
+    private void jComboMeasurementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMeasurementsActionPerformed
+        if (jComboMeasurements.getSelectedIndex() == 0){
+            lblheight1.setText("m");
+            lblheight2.setText("");
+            lblWeight.setText("Kg");
+        }
+        else if (jComboMeasurements.getSelectedIndex() == 1){
+            lblheight1.setText("Ft");
+            lblheight2.setText("In");
+            lblWeight.setText("Lbs");
+        }
+        
+    }//GEN-LAST:event_jComboMeasurementsActionPerformed
 
     //Main class to run program
     public static void main(String args[]) {
@@ -323,9 +367,10 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboActivityLevel;
     private javax.swing.JRadioButton femaleRadiobtn;
+    private javax.swing.JComboBox<String> jComboMeasurements;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblAge;
@@ -334,6 +379,9 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JLabel lblBMR2;
     private javax.swing.JLabel lblNormalRange;
     private javax.swing.JLabel lblRange;
+    private javax.swing.JLabel lblWeight;
+    private javax.swing.JLabel lblheight1;
+    private javax.swing.JLabel lblheight2;
     private javax.swing.JRadioButton maleRadiobtn;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtHeightFeet;
