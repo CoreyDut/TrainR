@@ -186,7 +186,7 @@ public class TrainRLogin extends javax.swing.JFrame {
             p.setProperty("key", txtUserLogin.getText());
             p.store(filewriter, "value");
             
-            System.out.println("Property File Created");
+            System.out.println("Property File Stored");
         } catch (IOException ex) {    
             Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Property File change invalid");

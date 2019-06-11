@@ -1,9 +1,17 @@
  package trainr;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class TrainRBMI extends javax.swing.JFrame {
@@ -282,7 +290,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         
        try {
         conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
-        st= conn.prepareStatement("insert into trainlogin(BMIDB,BMRDB)values(?,?)");
+        st= conn.prepareStatement("insert into trainlogin * where pkey.equals(username)(BMIDB,BMRDB)values(?,?)");
         st.setString(1, BMIDB);
         st.setString(2,BMRDB);
         int a =st.executeUpdate();
@@ -312,6 +320,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         comboActivityLevel.setSelectedItem(null);
         buttonGroup1.clearSelection();
         jComboMeasurements.setSelectedItem(null);
+        
+        
         
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -378,7 +388,17 @@ public class TrainRBMI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrainRBMI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+try (FileReader reader = new FileReader("keyvalue"))
+       {
+           Properties p = new Properties();
+           p.load(reader);
+           String pkey = p.getProperty(("key"));
+           System.out.println(pkey);
+       } catch (Exception e){
+           System.out.println("Did not pull properly");
+           e.printStackTrace();
+       }
+        
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
