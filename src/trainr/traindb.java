@@ -21,7 +21,7 @@ class traindb {
         PreparedStatement st= con.prepareStatement("insert into trainlogin(username,fullname)values(?,?)");
         st.setString(1, "david115");
         st.setString(2,"jacob camp");
-        int a =st.executeUpdate();
+        int a = st.executeUpdate();
         if(a>0)
         {
             System.out.println("ROW UPDATE");
