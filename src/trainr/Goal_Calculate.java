@@ -82,8 +82,8 @@ public class Goal_Calculate extends javax.swing.JFrame {
         saveBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        confirmWeekBtn = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
+        weeksDisplay = new javax.swing.JTextField();
 
         saveBtn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         saveBtn1.setText("Save Goal");
@@ -116,6 +116,11 @@ public class Goal_Calculate extends javax.swing.JFrame {
         weekSlider.setPaintTicks(true);
         weekSlider.setValue(3);
         weekSlider.setEnabled(false);
+        weekSlider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                weekSliderMouseReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Select Your Time Goal (in Weeks)");
@@ -159,19 +164,15 @@ public class Goal_Calculate extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("*If using the Metric scale, we do not recommend a goal larger than 17Kg");
 
-        confirmWeekBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        confirmWeekBtn.setText("Confirm Weeks");
-        confirmWeekBtn.setEnabled(false);
-        confirmWeekBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                confirmWeekBtnMouseClicked(evt);
-            }
-        });
-
         textArea1.setEditable(false);
         textArea1.setEnabled(false);
         textArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textArea1.setMaximumSize(new java.awt.Dimension(1000, 300));
+
+        weeksDisplay.setEditable(false);
+        weeksDisplay.setBackground(new java.awt.Color(204, 204, 204));
+        weeksDisplay.setFont(new java.awt.Font("Elephant", 0, 20)); // NOI18N
+        weeksDisplay.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,23 +206,23 @@ public class Goal_Calculate extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(weekSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(confirmWeekBtn))
+                        .addGap(210, 210, 210)
+                        .addComponent(weeksDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(81, 81, 81)
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(weeklyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(101, 101, 101)
-                            .addComponent(jLabel4)
-                            .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(weeklyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(overallTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
@@ -248,22 +249,20 @@ public class Goal_Calculate extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(weekSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(confirmWeekBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel4))
-                    .addComponent(overallTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(weeksDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(overallTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(weeklyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(weeklyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -288,7 +287,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         weeklyTextField.setEnabled(true);
         saveBtn.setEnabled(true);
         textArea1.setEnabled(true);
-        confirmWeekBtn.setEnabled(true);
+        weeksDisplay.setText(weekSlider.getValue() + "");
         
         weeklyGoalCalc = new int[50]; // 49 weeks (entries), 3 to 52 weeks.
         dailyGoalCalc = new int[50];
@@ -389,16 +388,11 @@ public class Goal_Calculate extends javax.swing.JFrame {
                     + "selecting a weight loss goal outside the possible time range of \nour"
                     + "calculations. If you chose a goal higher than 17kgs or 18kgs, please\nselect"
                     + " a lower goal and try again.");
-        }
+        }    
         
-               
+        weekSliderMouseReleased(evt);
+        
     }//GEN-LAST:event_confirmGoalbtnMouseClicked
-
-    private void confirmWeekBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmWeekBtnMouseClicked
-      int weekSliderChosen = weekSlider.getValue();
-      weeklyTextField.setText(weeklyGoalCalc[weekSliderChosen - 3] + "");
-      weeksChosen = weekSliderChosen;
-    }//GEN-LAST:event_confirmWeekBtnMouseClicked
 
     private void saveBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseReleased
         /*ADD CODE TO PASS VARIABLES TO DATABASE.
@@ -412,6 +406,25 @@ public class Goal_Calculate extends javax.swing.JFrame {
     private void exitBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseReleased
         this.dispose();
     }//GEN-LAST:event_exitBtnMouseReleased
+
+    private void weekSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_weekSliderMouseReleased
+        
+        int weekSliderChosen = weekSlider.getValue();
+        weeklyTextField.setText(weeklyGoalCalc[weekSliderChosen - 3] + "");
+        weeksChosen = weekSliderChosen;
+        
+        if (recommendedRangeWeeks.contains(weekSlider.getValue())){
+            weeksDisplay.setForeground(Color.green);
+        }else if(cautionRangeWeeks.contains(weekSlider.getValue())){
+            weeksDisplay.setForeground(Color.yellow);
+        }else if(dangerRangeWeeks.contains(weekSlider.getValue())){
+            weeksDisplay.setForeground(Color.red);
+        }else{
+            weeksDisplay.setText("Error");
+            weeksDisplay.setForeground(Color.red);
+        }
+        
+    }//GEN-LAST:event_weekSliderMouseReleased
 
     /**
      * @param args the command line arguments
@@ -450,7 +463,6 @@ public class Goal_Calculate extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmGoalbtn;
-    private javax.swing.JButton confirmWeekBtn;
     private javax.swing.JButton exitBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -464,6 +476,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
     private java.awt.TextArea textArea1;
     private javax.swing.JSlider weekSlider;
     private javax.swing.JTextField weeklyTextField;
+    private javax.swing.JTextField weeksDisplay;
     private javax.swing.JSpinner weightSpinner;
     private javax.swing.JComboBox weightTypeCombo;
     // End of variables declaration//GEN-END:variables
