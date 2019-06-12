@@ -411,13 +411,17 @@ public class Goal_Calculate extends javax.swing.JFrame {
         
         int weekSliderChosen = weekSlider.getValue();
         weeklyTextField.setText(weeklyGoalCalc[weekSliderChosen - 3] + "");
+        
         weeksChosen = weekSliderChosen;
         
         if (recommendedRangeWeeks.contains(weekSlider.getValue())){
+            weeksDisplay.setText(weekSlider.getValue() + "");
             weeksDisplay.setForeground(Color.green);
         }else if(cautionRangeWeeks.contains(weekSlider.getValue())){
+            weeksDisplay.setText(weekSlider.getValue() + "");
             weeksDisplay.setForeground(Color.yellow);
         }else if(dangerRangeWeeks.contains(weekSlider.getValue())){
+            weeksDisplay.setText(weekSlider.getValue() + "");
             weeksDisplay.setForeground(Color.red);
         }else{
             weeksDisplay.setText("Error");
