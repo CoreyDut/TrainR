@@ -8,7 +8,7 @@
       <Dimension value="[773, 600]"/>
     </Property>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[773, 600]"/>
+      <Dimension value="[773, 650]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -52,7 +52,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblName1">
+    <Component class="javax.swing.JLabel" name="lblName">
       <Properties>
         <Property name="text" type="java.lang.String" value="NAME"/>
       </Properties>
@@ -82,16 +82,56 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="390" y="10" width="190" height="100"/>
+          <AbsoluteConstraints x="390" y="10" width="210" height="100"/>
         </Constraint>
       </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Settings"/>
           </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="69" y="11" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnComment">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Comment"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCommentActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="110" y="70" width="90" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtComment">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="50" width="100" height="40"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnDelete">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Comment"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="80" y="30" width="120" height="-1"/>
+            </Constraint>
+          </Constraints>
         </Component>
       </SubComponents>
     </Container>
@@ -109,11 +149,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstSunday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Sunday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -124,13 +160,16 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstSundayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JProgressBar" name="progbar">
+    <Component class="javax.swing.JProgressBar" name="prgGoal">
       <Properties>
         <Property name="string" type="java.lang.String" value="50%"/>
       </Properties>
@@ -164,11 +203,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstMonday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Monday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -179,6 +214,9 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstMondayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -199,11 +237,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstTuesday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Tuesday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -214,6 +248,9 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstTuesdayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -234,11 +271,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstWednesday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Wednesday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -249,6 +282,9 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstWednesdayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -269,11 +305,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstThursday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Thursday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -284,6 +316,9 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstThursdayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -304,11 +339,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstFriday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Friday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -319,6 +350,9 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstFridayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -339,11 +373,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstSaturday">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Saturday"/>
-              </StringArray>
-            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 75]"/>
             </Property>
@@ -354,6 +384,9 @@
               <Dimension value="[100, 75]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lstSaturdayMousePressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -364,6 +397,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Next Week"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextWeekActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="650" y="460" width="90" height="-1"/>
