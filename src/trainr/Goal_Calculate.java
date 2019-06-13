@@ -8,9 +8,9 @@ import java.util.List;
 public class Goal_Calculate extends javax.swing.JFrame {
 
     /*IMPORTANT*/private int BMR = 2000; //*** Placeholder value. Replace with user BMR.***
-    /*IMPORTANT*/private int weeksChosen; //The number of weeks chosen by the user.
-    /*IMPORTANT*/private int overallGoal;//Overall user goal in calories
-    /*IMPORTANT*/private int weeklyGoal;//Weekly goal of the user based on Overall goal and weeks.
+    /*IMPORTANT*/private int weeksChosen = 0; //The number of weeks chosen by the user.
+    /*IMPORTANT*/private int overallGoal = 0;//Overall user goal in calories
+    /*IMPORTANT*/private int weeklyGoal = 0;//Weekly goal of the user based on Overall goal and weeks.
     
     
     //modifiers used in calculation.
@@ -375,7 +375,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
             }
         }catch(Exception e){
             textArea1.setText("There was an error. This was most likely caused by\n"
-                    + "selecting a weight loss goal outside the possible time range of \nour"
+                    + "selecting a weight loss goal outside the possible time range of \nour "
                     + "calculations. If you chose a goal higher than 17kgs or 18kgs, please\nselect"
                     + " a lower goal and try again.");
         }    
