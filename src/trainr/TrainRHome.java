@@ -106,7 +106,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         lblCal.setText("Kcal.");
         getContentPane().add(lblCal);
-        lblCal.setBounds(310, 10, 31, 13);
+        lblCal.setBounds(310, 10, 31, 16);
 
         txtGoal.setText("jTextField1");
         txtGoal.setEnabled(false);
@@ -115,18 +115,18 @@ public class TrainRHome extends javax.swing.JFrame {
 
         lblName.setText("NAME");
         getContentPane().add(lblName);
-        lblName.setBounds(10, 10, 31, 13);
+        lblName.setBounds(10, 10, 31, 16);
 
         lblGoal.setText("Goal:");
         getContentPane().add(lblGoal);
-        lblGoal.setBounds(200, 10, 31, 13);
+        lblGoal.setBounds(200, 10, 31, 16);
 
         panSettings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panSettings.setLayout(null);
 
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(30, 10, 50, 13);
+        jLabel1.setBounds(30, 10, 50, 16);
 
         btnComment.setText("Comment");
         btnComment.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +135,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnComment);
-        btnComment.setBounds(120, 70, 90, 21);
+        btnComment.setBounds(120, 70, 90, 29);
         panSettings.add(txtComment);
         txtComment.setBounds(10, 50, 100, 40);
 
@@ -146,7 +146,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnDelete);
-        btnDelete.setBounds(120, 40, 110, 21);
+        btnDelete.setBounds(120, 40, 110, 29);
 
         jButton1.setText("Set New Goal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +155,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(jButton1);
-        jButton1.setBounds(100, 10, 110, 21);
+        jButton1.setBounds(100, 10, 110, 29);
 
         getContentPane().add(panSettings);
         panSettings.setBounds(390, 10, 240, 100);
@@ -176,11 +176,11 @@ public class TrainRHome extends javax.swing.JFrame {
 
         prgGoalWeekly.setString("50%");
         getContentPane().add(prgGoalWeekly);
-        prgGoalWeekly.setBounds(150, 40, 146, 11);
+        prgGoalWeekly.setBounds(150, 40, 146, 20);
 
         lblProgress.setText("Weekly");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(300, 40, 50, 13);
+        lblProgress.setBounds(300, 40, 50, 16);
 
         lstMonday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMonday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -273,7 +273,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(630, 460, 110, 21);
+        btnNextWeek.setBounds(630, 460, 110, 29);
 
         btnLastWeek.setText("Last Week");
         btnLastWeek.setEnabled(false);
@@ -283,39 +283,39 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(20, 470, 100, 21);
+        btnLastWeek.setBounds(20, 470, 100, 29);
 
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(270, 480, 31, 13);
+        lblBMRInfo.setBounds(270, 480, 31, 16);
 
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(310, 480, 50, 13);
+        lblBMR.setBounds(310, 480, 50, 16);
 
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(270, 450, 22, 13);
+        lblBMIInfo.setBounds(270, 450, 26, 16);
 
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(310, 450, 50, 13);
+        lblBMI.setBounds(310, 450, 50, 16);
 
         lblProgress1.setText("Progress:");
         getContentPane().add(lblProgress1);
-        lblProgress1.setBounds(90, 40, 50, 13);
+        lblProgress1.setBounds(90, 40, 50, 16);
 
         prgGoalTotal.setString("50%");
         getContentPane().add(prgGoalTotal);
-        prgGoalTotal.setBounds(150, 60, 146, 11);
+        prgGoalTotal.setBounds(150, 60, 146, 20);
 
         lblProgress2.setText("Total");
         getContentPane().add(lblProgress2);
-        lblProgress2.setBounds(300, 60, 50, 13);
+        lblProgress2.setBounds(300, 60, 50, 16);
 
         lblProgress3.setText("Progress:");
         getContentPane().add(lblProgress3);
-        lblProgress3.setBounds(90, 60, 50, 13);
+        lblProgress3.setBounds(90, 60, 50, 16);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -324,8 +324,6 @@ public class TrainRHome extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane9);
         jScrollPane9.setBounds(630, 10, 230, 113);
-
-        getAccessibleContext().setAccessibleName("TrainR");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
