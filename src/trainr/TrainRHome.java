@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 public class TrainRHome extends javax.swing.JFrame {
@@ -33,45 +34,22 @@ public class TrainRHome extends javax.swing.JFrame {
     DefaultListModel objSaturday = new DefaultListModel();
     DefaultListModel objSunday = new DefaultListModel();
     
+    int calories = 20000; //from database
+    int weeks = 20; //from database
+    int dailyCal = (calories / weeks) / 7; //calculates daily calorie value
+    //Start with two so be 100% when complete
+    int progressWeekly = 2;
+    String dailyStrCal = Integer.toString(dailyCal);
+    //Week Counter
+    int weekCounter = 1;
+    
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
-        lblName.setText("name"); //Name from database store here
-        txtGoal.setText("0"); //Goal from database / from Goal_calculate 
-        //stored here
-        prgGoal.setString("0"); //for now this will be 0. It will update as
-        //goal is being completed.
-        lblBMI.setText("0"); //BMI from database. will update too
-        lblBMR.setText("0"); //BMR from database. will uddate too
         
-        //simpleDateformat.format(now)
-        
-        //Starts all list box with the days below
-        objMonday.addElement("Monday");
-        lstMonday.setModel(objMonday);
-        
-        objTuesday.addElement("Tuesday");
-        lstTuesday.setModel(objTuesday);
-        
-        objWednesday.addElement("Wednesday");
-        lstWednesday.setModel(objWednesday);
-        
-        objThursday.addElement("Thursday");
-        lstThursday.setModel(objThursday);
-
-        objFriday.addElement("Friday");
-        lstFriday.setModel(objFriday);
-
-        objSaturday.addElement("Saturday");
-        lstSaturday.setModel(objSaturday);
-
-        objSunday.addElement("Sunday");
-        lstSunday.setModel(objSunday);
-       
+        Start();
     }
 
-    //Initialized when form and program are loaded
-    //This info is auto generated, do not change.
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,7 +65,7 @@ public class TrainRHome extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstSunday = new javax.swing.JList<>();
-        prgGoal = new javax.swing.JProgressBar();
+        prgGoalWeekly = new javax.swing.JProgressBar();
         lblProgress = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstMonday = new javax.swing.JList<>();
@@ -103,17 +81,19 @@ public class TrainRHome extends javax.swing.JFrame {
         lstSaturday = new javax.swing.JList<>();
         btnNextWeek = new javax.swing.JButton();
         btnLastWeek = new javax.swing.JButton();
-        txtCalInput = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         lblBMRInfo = new javax.swing.JLabel();
         lblBMR = new javax.swing.JLabel();
         lblBMIInfo = new javax.swing.JLabel();
         lblBMI = new javax.swing.JLabel();
+        lblProgress1 = new javax.swing.JLabel();
+        prgGoalTotal = new javax.swing.JProgressBar();
+        lblProgress2 = new javax.swing.JLabel();
+        lblProgress3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrianR");
-        setPreferredSize(new java.awt.Dimension(773, 600));
-        setSize(new java.awt.Dimension(773, 650));
+        setPreferredSize(new java.awt.Dimension(864, 600));
+        setSize(new java.awt.Dimension(864, 600));
         getContentPane().setLayout(null);
 
         lblCal.setText("Kcal.");
@@ -121,8 +101,9 @@ public class TrainRHome extends javax.swing.JFrame {
         lblCal.setBounds(310, 10, 31, 13);
 
         txtGoal.setText("jTextField1");
+        txtGoal.setEnabled(false);
         getContentPane().add(txtGoal);
-        txtGoal.setBounds(240, 10, 57, 19);
+        txtGoal.setBounds(240, 10, 70, 30);
 
         lblName.setText("NAME");
         getContentPane().add(lblName);
@@ -137,7 +118,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(69, 11, 36, 13);
+        jLabel1.setBounds(69, 11, 50, 13);
 
         btnComment.setText("Comment");
         btnComment.addActionListener(new java.awt.event.ActionListener() {
@@ -174,15 +155,15 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstSunday);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(660, 130, 110, 260);
+        jScrollPane1.setBounds(730, 130, 130, 260);
 
-        prgGoal.setString("50%");
-        getContentPane().add(prgGoal);
-        prgGoal.setBounds(190, 40, 146, 11);
+        prgGoalWeekly.setString("50%");
+        getContentPane().add(prgGoalWeekly);
+        prgGoalWeekly.setBounds(150, 40, 146, 11);
 
-        lblProgress.setText("Progress:");
+        lblProgress.setText("Weekly");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(130, 40, 50, 13);
+        lblProgress.setBounds(300, 40, 50, 13);
 
         lstMonday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMonday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -196,7 +177,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane2.setViewportView(lstMonday);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(0, 130, 110, 260);
+        jScrollPane2.setBounds(10, 130, 130, 260);
 
         lstTuesday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstTuesday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -210,7 +191,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane3.setViewportView(lstTuesday);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(110, 130, 110, 260);
+        jScrollPane3.setBounds(130, 130, 130, 260);
 
         lstWednesday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstWednesday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -224,7 +205,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane4.setViewportView(lstWednesday);
 
         getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(220, 130, 110, 260);
+        jScrollPane4.setBounds(250, 130, 130, 260);
 
         lstThursday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstThursday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -238,7 +219,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane5.setViewportView(lstThursday);
 
         getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(330, 130, 110, 260);
+        jScrollPane5.setBounds(370, 130, 130, 260);
 
         lstFriday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstFriday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -252,7 +233,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane6.setViewportView(lstFriday);
 
         getContentPane().add(jScrollPane6);
-        jScrollPane6.setBounds(440, 130, 110, 260);
+        jScrollPane6.setBounds(490, 130, 130, 260);
 
         lstSaturday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSaturday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -266,7 +247,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane7.setViewportView(lstSaturday);
 
         getContentPane().add(jScrollPane7);
-        jScrollPane7.setBounds(550, 130, 110, 260);
+        jScrollPane7.setBounds(610, 130, 130, 260);
 
         btnNextWeek.setText("Next Week");
         btnNextWeek.addActionListener(new java.awt.event.ActionListener() {
@@ -275,22 +256,17 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(650, 460, 90, 21);
+        btnNextWeek.setBounds(630, 460, 110, 21);
 
         btnLastWeek.setText("Last Week");
+        btnLastWeek.setEnabled(false);
         btnLastWeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLastWeekActionPerformed(evt);
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(20, 470, 80, 21);
-        getContentPane().add(txtCalInput);
-        txtCalInput.setBounds(350, 400, 60, 19);
-
-        jLabel2.setText("Kcal Input:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 400, 60, 13);
+        btnLastWeek.setBounds(20, 470, 100, 21);
 
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
@@ -298,7 +274,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(310, 480, 6, 13);
+        lblBMR.setBounds(310, 480, 50, 13);
 
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
@@ -306,38 +282,103 @@ public class TrainRHome extends javax.swing.JFrame {
 
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(310, 450, 6, 13);
+        lblBMI.setBounds(310, 450, 50, 13);
+
+        lblProgress1.setText("Progress:");
+        getContentPane().add(lblProgress1);
+        lblProgress1.setBounds(90, 40, 50, 13);
+
+        prgGoalTotal.setString("50%");
+        getContentPane().add(prgGoalTotal);
+        prgGoalTotal.setBounds(150, 60, 146, 11);
+
+        lblProgress2.setText("Total");
+        getContentPane().add(lblProgress2);
+        lblProgress2.setBounds(300, 60, 50, 13);
+
+        lblProgress3.setText("Progress:");
+        getContentPane().add(lblProgress3);
+        lblProgress3.setBounds(90, 60, 50, 13);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLastWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastWeekActionPerformed
-        // TODO add your handling code here:
+        //This code will make a fresh start for the next week            
+        weekCounter -= 1;
+        
+        Clear();
+        
+        if (weekCounter == 1){
+            Start();
+        } else{
+            Next();
+        }
+
+        if (weekCounter < weeks){
+            btnNextWeek.setEnabled(true);
+        }
+        
+        if (weekCounter <= 1){
+            btnLastWeek.setEnabled(false);
+        }
+        
     }//GEN-LAST:event_btnLastWeekActionPerformed
 
     private void btnCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommentActionPerformed
-        if (lstMonday.getSelectedIndex() != -1){
+       if (lstMonday.getSelectedIndex() != -1){
             objMonday.addElement(txtComment.getText());
             lstMonday.setModel(objMonday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         } else if (lstTuesday.getSelectedIndex() != -1){
             objTuesday.addElement(txtComment.getText());
             lstTuesday.setModel(objTuesday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         } else if (lstWednesday.getSelectedIndex() != -1){
             objWednesday.addElement(txtComment.getText());
             lstWednesday.setModel(objWednesday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         } else if (lstThursday.getSelectedIndex() != -1){
             objThursday.addElement(txtComment.getText());
             lstThursday.setModel(objThursday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         } else if (lstFriday.getSelectedIndex() != -1){
             objFriday.addElement(txtComment.getText());
             lstFriday.setModel(objFriday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         } else if (lstSaturday.getSelectedIndex() != -1){
             objSaturday.addElement(txtComment.getText());
             lstSaturday.setModel(objSaturday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         } else if (lstSunday.getSelectedIndex() != -1){
             objSunday.addElement(txtComment.getText());
             lstSunday.setModel(objSunday);
+            if (txtComment.getText().equals("complete")){
+                progressWeekly += 14;
+                prgGoalWeekly.setValue(progressWeekly);
+            }
         }
+        
+        txtComment.setText("");
+        
     }//GEN-LAST:event_btnCommentActionPerformed
 
     private void lstMondayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstMondayMousePressed
@@ -411,36 +452,205 @@ public class TrainRHome extends javax.swing.JFrame {
     }//GEN-LAST:event_lstSundayMousePressed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        
-        
-        if (lstMonday.getSelectedIndex() != -1){
+        if ((lstMonday.getSelectedIndex() != -1) && 
+                (lstMonday.getSelectedIndex() != 0) && 
+                (lstMonday.getSelectedIndex() != 1)){
             objMonday.remove(lstMonday.getSelectedIndex());
             lstMonday.remove(lstMonday.getSelectedIndex());
-        } else if (lstTuesday.getSelectedIndex() != -1){
+        } else if ((lstTuesday.getSelectedIndex() != -1) && 
+                (lstTuesday.getSelectedIndex() != 0) && 
+                (lstTuesday.getSelectedIndex() != 1)){
             objTuesday.remove(lstTuesday.getSelectedIndex());
             lstTuesday.remove(lstTuesday.getSelectedIndex());
-        } else if (lstWednesday.getSelectedIndex() != -1){
+        } else if ((lstWednesday.getSelectedIndex() != -1) && 
+                (lstWednesday.getSelectedIndex() != 0) && 
+                (lstWednesday.getSelectedIndex() != 1)){
             objWednesday.remove(lstWednesday.getSelectedIndex());
             lstWednesday.remove(lstWednesday.getSelectedIndex());
-        } else if (lstThursday.getSelectedIndex() != -1){
+        } else if ((lstThursday.getSelectedIndex() != -1) && 
+                (lstThursday.getSelectedIndex() != 0) && 
+                (lstThursday.getSelectedIndex() != 1)){
             objThursday.remove(lstThursday.getSelectedIndex());
             lstThursday.remove(lstThursday.getSelectedIndex());
-        } else if (lstFriday.getSelectedIndex() != -1){
+        } else if ((lstFriday.getSelectedIndex() != -1) && 
+                (lstFriday.getSelectedIndex() != 0) && 
+                (lstFriday.getSelectedIndex() != 1)){
             objFriday.remove(lstFriday.getSelectedIndex());
             lstFriday.remove(lstFriday.getSelectedIndex());
-        } else if (lstSaturday.getSelectedIndex() != -1){
+        } else if ((lstSaturday.getSelectedIndex() != -1) && 
+                (lstSaturday.getSelectedIndex() != 0) && 
+                (lstSaturday.getSelectedIndex() != 1)){
             objSaturday.remove(lstSaturday.getSelectedIndex());
             lstSaturday.remove(lstSaturday.getSelectedIndex());
-        } else if (lstSunday.getSelectedIndex() != -1){
+        } else if ((lstSunday.getSelectedIndex() != -1) && 
+                (lstSunday.getSelectedIndex() != 0) && 
+                (lstSunday.getSelectedIndex() != 1)){
             objSunday.remove(lstSunday.getSelectedIndex());
             lstSunday.remove(lstSunday.getSelectedIndex());
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "You do not have permission to delete this value!");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnNextWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextWeekActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNextWeekActionPerformed
+        
+        //This code will make a fresh start for the next week            
+        weekCounter += 1;
+        
+        Next();
 
+        if (weekCounter >= weeks){
+            btnNextWeek.setEnabled(false);
+        }
+        
+        if (weekCounter > 1){
+            btnLastWeek.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_btnNextWeekActionPerformed
+ 
+    private void Clear(){
+        objMonday.clear();
+        lstMonday.removeAll();
+        objTuesday.clear();
+        lstTuesday.removeAll();
+        objWednesday.clear();
+        lstWednesday.removeAll(); 
+        objThursday.clear();
+        lstThursday.removeAll();    
+        objFriday.clear();
+        lstFriday.removeAll();      
+        objSaturday.clear();
+        lstSaturday.removeAll();       
+        objSunday.clear();
+        lstSunday.removeAll();
+    }
+    
+    private void Next(){
+        prgGoalWeekly.setValue(2);
+        txtComment.setText("");
+        
+        Clear();
+        
+        objMonday.addElement("Monday");
+        objMonday.addElement(dailyStrCal);
+        lstMonday.setModel(objMonday);
+
+        objTuesday.addElement("Tuesday");
+        objTuesday.addElement(dailyStrCal);
+        lstTuesday.setModel(objTuesday);
+
+        objWednesday.addElement("Wednesday");
+        objWednesday.addElement(dailyStrCal);
+        lstWednesday.setModel(objWednesday);
+
+        objThursday.addElement("Thursday");
+        objThursday.addElement(dailyStrCal);
+        lstThursday.setModel(objThursday);
+
+        objFriday.addElement("Friday");
+        objFriday.addElement(dailyStrCal);
+        lstFriday.setModel(objFriday);
+
+        objSaturday.addElement("Saturday");
+        objSaturday.addElement(dailyStrCal);
+        lstSaturday.setModel(objSaturday);
+
+        objSunday.addElement("Sunday");
+        objSunday.addElement(dailyStrCal);
+        lstSunday.setModel(objSunday);
+    }
+    
+    private void Start() {
+        lblName.setText("Seth"); //Name from database store here
+        txtGoal.setText(Integer.toString(calories)); //Goal from database / from Goal_calculate 
+        //stored here
+        prgGoalWeekly.setString("0"); //for now this will be 0. It will update as
+        //goal is being completed.
+        lblBMI.setText("17"); //BMI from database. will update too
+        lblBMR.setText("1000"); //BMR from database. will uddate too
+        
+        //simpleDateformat.format(now)
+        
+        //Starts all list box with the days below and the current day with date
+        if (simpleDateformat.format(now).equals("Monday")){
+            objMonday.addElement("Monday " + date);
+            objMonday.addElement(dailyStrCal);
+            objMonday.addElement("Today");
+            lstMonday.setModel(objMonday);
+        } else {
+            objMonday.addElement("Monday");
+            objMonday.addElement(dailyStrCal);
+            lstMonday.setModel(objMonday);
+        }
+        
+        if (simpleDateformat.format(now).equals("Tuesday")){
+            objTuesday.addElement("Tuesday " + date);
+            objTuesday.addElement(dailyStrCal);
+            objTuesday.addElement("Today");
+            lstTuesday.setModel(objTuesday);
+        } else {
+            objTuesday.addElement("Tuesday");
+            objTuesday.addElement(dailyStrCal);
+            lstTuesday.setModel(objTuesday);
+        }
+        
+        if (simpleDateformat.format(now).equals("Wednesday")){
+            objWednesday.addElement("Wednesday " + date);
+            objWednesday.addElement(dailyStrCal);
+            objWednesday.addElement("Today");
+            lstWednesday.setModel(objWednesday);
+        } else {
+            objWednesday.addElement("Wednesday");
+            objWednesday.addElement(dailyStrCal);
+            lstWednesday.setModel(objWednesday);
+        }
+        
+        if (simpleDateformat.format(now).equals("Thursday")){
+            objThursday.addElement("Thursday " + date);
+            objThursday.addElement(dailyStrCal);
+            objThursday.addElement("Today");
+            lstThursday.setModel(objThursday);
+        } else {
+            objThursday.addElement("Thursday");
+            objThursday.addElement(dailyStrCal);
+            lstThursday.setModel(objThursday);
+        }
+        
+        if (simpleDateformat.format(now).equals("Friday")){
+            objFriday.addElement("Friday " + date);
+            objFriday.addElement(dailyStrCal);
+            objFriday.addElement("Today");
+            lstFriday.setModel(objFriday);
+        } else {
+            objFriday.addElement("Friday");
+            objFriday.addElement(dailyStrCal);
+            lstFriday.setModel(objFriday);
+        }
+
+        if (simpleDateformat.format(now).equals("Saturday")){
+            objSaturday.addElement("Saturday " + date);
+            objSaturday.addElement(dailyStrCal);
+            objSaturday.addElement("Today");
+            lstSaturday.setModel(objSaturday);
+        } else {
+            objSaturday.addElement("Saturday");
+            objSaturday.addElement(dailyStrCal);
+            lstSaturday.setModel(objSaturday);
+        }
+        
+        if (simpleDateformat.format(now).equals("Sunday")){
+            objSunday.addElement("Sunday " + date);
+            objSunday.addElement(dailyStrCal);
+            objSunday.addElement("Today");
+            lstSunday.setModel(objSunday);
+        } else {
+            objSunday.addElement("Sunday");
+            objSunday.addElement(dailyStrCal);
+            lstSunday.setModel(objSunday);
+        }
+    }
     
     //Main class to run program
     public static void main(String args[]) {
@@ -465,7 +675,6 @@ public class TrainRHome extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrainRHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -482,7 +691,6 @@ public class TrainRHome extends javax.swing.JFrame {
     private javax.swing.JButton btnLastWeek;
     private javax.swing.JButton btnNextWeek;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -498,6 +706,9 @@ public class TrainRHome extends javax.swing.JFrame {
     private javax.swing.JLabel lblGoal;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblProgress;
+    private javax.swing.JLabel lblProgress1;
+    private javax.swing.JLabel lblProgress2;
+    private javax.swing.JLabel lblProgress3;
     private javax.swing.JList<String> lstFriday;
     private javax.swing.JList<String> lstMonday;
     private javax.swing.JList<String> lstSaturday;
@@ -506,8 +717,8 @@ public class TrainRHome extends javax.swing.JFrame {
     private javax.swing.JList<String> lstTuesday;
     private javax.swing.JList<String> lstWednesday;
     private javax.swing.JPanel panSettings;
-    private javax.swing.JProgressBar prgGoal;
-    private javax.swing.JTextField txtCalInput;
+    private javax.swing.JProgressBar prgGoalTotal;
+    private javax.swing.JProgressBar prgGoalWeekly;
     private javax.swing.JTextField txtComment;
     private javax.swing.JTextField txtGoal;
     // End of variables declaration//GEN-END:variables
