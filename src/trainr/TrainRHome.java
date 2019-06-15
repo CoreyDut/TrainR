@@ -2,6 +2,7 @@ package trainr;
 //Imports TrainRLogin Class from different file.
 import java.text.SimpleDateFormat;
 import trainr.TrainRBMI;
+import trainr.Goal_Calculate;
 
 //Get todays date and formats it mm/dd/yyyy
 import java.time.LocalDate;
@@ -16,6 +17,10 @@ public class TrainRHome extends javax.swing.JFrame {
     /*Gets new instance of TrainRBMI class so it can be referenced 
     in this class.*/
     static TrainRBMI TrainRBMI = new TrainRBMI();
+    
+    /*Gets new instance of Goal_Calculate class so it can be referenced 
+    in this class.*/
+    static Goal_Calculate Goal_Calculate = new Goal_Calculate();
     
     //Gets todays date and formats in mm/dd/yyyy, then stores in variable
     Date now = new Date();
@@ -63,6 +68,7 @@ public class TrainRHome extends javax.swing.JFrame {
         btnComment = new javax.swing.JButton();
         txtComment = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstSunday = new javax.swing.JList<>();
         prgGoalWeekly = new javax.swing.JProgressBar();
@@ -89,9 +95,11 @@ public class TrainRHome extends javax.swing.JFrame {
         prgGoalTotal = new javax.swing.JProgressBar();
         lblProgress2 = new javax.swing.JLabel();
         lblProgress3 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TrianR");
+        setTitle("TrainR");
         setPreferredSize(new java.awt.Dimension(864, 600));
         setSize(new java.awt.Dimension(864, 600));
         getContentPane().setLayout(null);
@@ -118,7 +126,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(69, 11, 50, 13);
+        jLabel1.setBounds(30, 10, 50, 13);
 
         btnComment.setText("Comment");
         btnComment.addActionListener(new java.awt.event.ActionListener() {
@@ -127,9 +135,9 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnComment);
-        btnComment.setBounds(110, 70, 90, 21);
+        btnComment.setBounds(120, 70, 90, 21);
         panSettings.add(txtComment);
-        txtComment.setBounds(0, 50, 100, 40);
+        txtComment.setBounds(10, 50, 100, 40);
 
         btnDelete.setText("Delete Comment");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -138,10 +146,19 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnDelete);
-        btnDelete.setBounds(80, 30, 120, 21);
+        btnDelete.setBounds(120, 40, 110, 21);
+
+        jButton1.setText("Set New Goal");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        panSettings.add(jButton1);
+        jButton1.setBounds(100, 10, 110, 21);
 
         getContentPane().add(panSettings);
-        panSettings.setBounds(390, 10, 210, 100);
+        panSettings.setBounds(390, 10, 240, 100);
 
         lstSunday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSunday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -299,6 +316,16 @@ public class TrainRHome extends javax.swing.JFrame {
         lblProgress3.setText("Progress:");
         getContentPane().add(lblProgress3);
         lblProgress3.setBounds(90, 60, 50, 13);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("-Type \"complete\" to \ncomplete daily goal.\n-Hit day of week to add\ncomment.\n-Select comment to delete.");
+        jScrollPane9.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane9);
+        jScrollPane9.setBounds(630, 10, 230, 113);
+
+        getAccessibleContext().setAccessibleName("TrainR");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -509,6 +536,11 @@ public class TrainRHome extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnNextWeekActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Goal_Calculate gc = new Goal_Calculate();
+        gc.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
  
     private void Clear(){
         objMonday.clear();
@@ -690,6 +722,7 @@ public class TrainRHome extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnLastWeek;
     private javax.swing.JButton btnNextWeek;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -698,6 +731,8 @@ public class TrainRHome extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblBMI;
     private javax.swing.JLabel lblBMIInfo;
     private javax.swing.JLabel lblBMR;
