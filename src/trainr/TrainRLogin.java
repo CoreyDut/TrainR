@@ -61,15 +61,24 @@ public class TrainRLogin extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         txtUser = new javax.swing.JTextField();
         lblCreateAccount = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR Login");
         setBackground(new java.awt.Color(0, 0, 250));
         setName("frmLogin"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(600, 400));
-        setSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(900, 550));
+        setSize(new java.awt.Dimension(900, 550));
         getContentPane().setLayout(null);
 
+        btnLogin.setForeground(new java.awt.Color(0, 0, 255));
         btnLogin.setText("Login");
         btnLogin.setName("btnLogin"); // NOI18N
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -78,29 +87,30 @@ public class TrainRLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-        btnLogin.setBounds(477, 160, 70, 21);
+        btnLogin.setBounds(760, 340, 70, 29);
 
         lblUserLogin.setText("Username: ");
         lblUserLogin.setName("lblUserLogin"); // NOI18N
         getContentPane().add(lblUserLogin);
-        lblUserLogin.setBounds(310, 50, 70, 13);
+        lblUserLogin.setBounds(630, 250, 70, 16);
 
         lblPasswordLogin.setText("Password: ");
         lblPasswordLogin.setName("lblPasswordLogin"); // NOI18N
         getContentPane().add(lblPasswordLogin);
-        lblPasswordLogin.setBounds(310, 100, 70, 13);
+        lblPasswordLogin.setBounds(630, 300, 70, 16);
 
         txtPasswordLogin.setFont(new java.awt.Font("Symbol", 0, 10)); // NOI18N
         txtPasswordLogin.setName("txtPasswordLogin"); // NOI18N
         txtPasswordLogin.setNextFocusableComponent(btnLogin);
         getContentPane().add(txtPasswordLogin);
-        txtPasswordLogin.setBounds(400, 100, 150, 30);
+        txtPasswordLogin.setBounds(720, 300, 150, 30);
 
         txtUserLogin.setName("txtUserLogin"); // NOI18N
         txtUserLogin.setNextFocusableComponent(lblPasswordLogin);
         getContentPane().add(txtUserLogin);
-        txtUserLogin.setBounds(400, 50, 100, 30);
+        txtUserLogin.setBounds(720, 250, 150, 30);
 
+        btnSubmit.setForeground(new java.awt.Color(0, 0, 255));
         btnSubmit.setText("Submit");
         btnSubmit.setName("btnSubmit"); // NOI18N
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -109,19 +119,19 @@ public class TrainRLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSubmit);
-        btnSubmit.setBounds(160, 250, 90, 21);
+        btnSubmit.setBounds(160, 380, 90, 29);
 
         lblName.setText("Full Name: ");
         lblName.setName("lblName"); // NOI18N
         getContentPane().add(lblName);
-        lblName.setBounds(10, 50, 70, 13);
+        lblName.setBounds(30, 190, 80, 16);
 
-        lblLogin.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lblLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblLogin.setText("Login");
         lblLogin.setToolTipText("");
         lblLogin.setName("lblLogin"); // NOI18N
         getContentPane().add(lblLogin);
-        lblLogin.setBounds(310, 10, 30, 13);
+        lblLogin.setBounds(630, 210, 50, 17);
 
         txtName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtName.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -130,45 +140,78 @@ public class TrainRLogin extends javax.swing.JFrame {
         txtName.setNextFocusableComponent(lblEmail);
         txtName.setPreferredSize(new java.awt.Dimension(7, 25));
         getContentPane().add(txtName);
-        txtName.setBounds(100, 50, 100, 30);
+        txtName.setBounds(120, 190, 150, 30);
 
         lblEmail.setText("Email: ");
         lblEmail.setName("lblEmail"); // NOI18N
         getContentPane().add(lblEmail);
-        lblEmail.setBounds(10, 100, 40, 13);
+        lblEmail.setBounds(30, 240, 50, 16);
 
         txtEmail.setName("txtEmail"); // NOI18N
         txtEmail.setNextFocusableComponent(lblUser);
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(100, 100, 150, 30);
+        txtEmail.setBounds(120, 240, 150, 30);
 
         lblUser.setText("Username: ");
         lblUser.setName("lblUser"); // NOI18N
         getContentPane().add(lblUser);
-        lblUser.setBounds(10, 150, 70, 13);
+        lblUser.setBounds(30, 290, 70, 16);
 
         lblPassword.setText("Password: ");
         lblPassword.setName("lblPassword"); // NOI18N
         getContentPane().add(lblPassword);
-        lblPassword.setBounds(10, 200, 70, 13);
+        lblPassword.setBounds(30, 340, 70, 16);
 
         txtPassword.setFont(new java.awt.Font("Symbol", 0, 10)); // NOI18N
         txtPassword.setName("txtPassword"); // NOI18N
         txtPassword.setNextFocusableComponent(btnSubmit);
         getContentPane().add(txtPassword);
-        txtPassword.setBounds(100, 200, 150, 30);
+        txtPassword.setBounds(120, 340, 150, 30);
 
         txtUser.setName("txtUser"); // NOI18N
         txtUser.setNextFocusableComponent(lblPassword);
         getContentPane().add(txtUser);
-        txtUser.setBounds(100, 150, 100, 30);
+        txtUser.setBounds(120, 290, 150, 30);
 
-        lblCreateAccount.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        lblCreateAccount.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCreateAccount.setText("Create Account");
         lblCreateAccount.setToolTipText("");
         lblCreateAccount.setName("lblCreateAccount"); // NOI18N
         getContentPane().add(lblCreateAccount);
-        lblCreateAccount.setBounds(10, 10, 90, 13);
+        lblCreateAccount.setBounds(30, 150, 120, 17);
+
+        jLabel1.setText("Password must contain:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(20, 410, 200, 20);
+
+        jLabel2.setText("At least one uppercase and lowercase letter");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 430, 280, 16);
+
+        jLabel3.setText("At least one number");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(20, 450, 140, 16);
+
+        jLabel4.setText("Must use at least one special character: @ # $ % ^ & + = !");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 470, 370, 16);
+
+        jLabel5.setText("No spaces");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 490, 80, 16);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/logo.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(260, 20, 420, 200);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/logobck.png"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(280, 120, 440, 290);
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 900, 620);
 
         getAccessibleContext().setAccessibleName("frmLogin");
         getAccessibleContext().setAccessibleDescription("");
@@ -391,6 +434,14 @@ public class TrainRLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCreateAccount;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblLogin;
