@@ -91,6 +91,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         weightTypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lbs", "Kgs" }));
 
         confirmGoalbtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        confirmGoalbtn.setForeground(new java.awt.Color(255, 0, 0));
         confirmGoalbtn.setText("Confirm Goal");
         confirmGoalbtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,6 +136,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         weeklyTextField.setEnabled(false);
 
         saveBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(0, 0, 255));
         saveBtn.setText("Save Goal");
         saveBtn.setEnabled(false);
         saveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,6 +146,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         });
 
         exitBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        exitBtn.setForeground(new java.awt.Color(0, 0, 255));
         exitBtn.setText("Exit");
         exitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -200,16 +203,20 @@ public class Goal_Calculate extends javax.swing.JFrame {
                         .addComponent(weeksDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(29, 29, 29))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)))
+                                .addGap(74, 74, 74))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addComponent(jLabel5))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel4)
+                                        .addGap(9, 9, 9)))
+                                .addGap(29, 29, 29)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(weeklyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)

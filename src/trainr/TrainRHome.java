@@ -100,7 +100,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
-        setPreferredSize(new java.awt.Dimension(864, 600));
+        setPreferredSize(new java.awt.Dimension(864, 800));
         setSize(new java.awt.Dimension(864, 600));
         getContentPane().setLayout(null);
 
@@ -273,7 +273,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(630, 460, 110, 29);
+        btnNextWeek.setBounds(630, 450, 110, 29);
 
         btnLastWeek.setText("Last Week");
         btnLastWeek.setEnabled(false);
@@ -283,23 +283,23 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(20, 470, 100, 29);
+        btnLastWeek.setBounds(20, 450, 100, 29);
 
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(270, 480, 31, 16);
+        lblBMRInfo.setBounds(270, 460, 31, 16);
 
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(310, 480, 50, 16);
+        lblBMR.setBounds(310, 460, 50, 16);
 
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(270, 450, 26, 16);
+        lblBMIInfo.setBounds(270, 430, 26, 16);
 
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(310, 450, 50, 16);
+        lblBMI.setBounds(310, 430, 50, 16);
 
         lblProgress1.setText("Progress:");
         getContentPane().add(lblProgress1);

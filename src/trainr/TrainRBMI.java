@@ -58,11 +58,13 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblWeight = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
         setName("frmTrainRHome"); // NOI18N
-        setSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(600, 400));
+        setSize(new java.awt.Dimension(700, 400));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -70,29 +72,30 @@ public class TrainRBMI extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setName("lblBMI"); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 240, 50, 29);
+        jLabel1.setBounds(10, 240, 50, 29);
 
         txtPounds.setName("weight"); // NOI18N
         getContentPane().add(txtPounds);
-        txtPounds.setBounds(10, 50, 50, 30);
+        txtPounds.setBounds(30, 50, 50, 30);
 
         txtHeightFeet.setName("heightInFeet"); // NOI18N
         getContentPane().add(txtHeightFeet);
-        txtHeightFeet.setBounds(10, 110, 50, 30);
+        txtHeightFeet.setBounds(30, 110, 50, 30);
 
         txtHeightInch.setText("0");
         txtHeightInch.setName("heightInInches"); // NOI18N
         getContentPane().add(txtHeightInch);
-        txtHeightInch.setBounds(100, 110, 50, 30);
+        txtHeightInch.setBounds(120, 110, 50, 30);
 
         lblheight1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(lblheight1);
-        lblheight1.setBounds(70, 110, 20, 30);
+        lblheight1.setBounds(90, 110, 20, 30);
 
         lblheight2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(lblheight2);
-        lblheight2.setBounds(160, 110, 20, 30);
+        lblheight2.setBounds(240, 110, 20, 30);
 
+        btnCalculate.setForeground(new java.awt.Color(0, 0, 255));
         btnCalculate.setText("Calculate");
         btnCalculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,8 +103,9 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCalculate);
-        btnCalculate.setBounds(130, 180, 100, 30);
+        btnCalculate.setBounds(120, 180, 100, 30);
 
+        btnClear.setForeground(new java.awt.Color(0, 0, 255));
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,21 +113,24 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnClear);
-        btnClear.setBounds(20, 180, 80, 30);
+        btnClear.setBounds(10, 180, 80, 30);
 
         jLabel5.setText("Weight");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 20, 40, 30);
+        jLabel5.setBounds(30, 20, 60, 30);
 
         jLabel6.setText("Height");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 80, 40, 30);
+        jLabel6.setBounds(30, 80, 50, 30);
 
         lblBMI.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblBMI.setForeground(new java.awt.Color(255, 0, 0));
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(80, 230, 60, 50);
+        lblBMI.setBounds(70, 230, 60, 50);
 
+        btnContinue.setBackground(new java.awt.Color(255, 0, 0));
+        btnContinue.setForeground(new java.awt.Color(0, 0, 255));
         btnContinue.setText("Continue --->");
         btnContinue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +138,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnContinue);
-        btnContinue.setBounds(390, 300, 100, 40);
+        btnContinue.setBounds(380, 300, 120, 40);
 
         buttonGroup1.add(maleRadiobtn);
         maleRadiobtn.setText("Male");
@@ -141,7 +148,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(maleRadiobtn);
-        maleRadiobtn.setBounds(230, 60, 80, 20);
+        maleRadiobtn.setBounds(310, 60, 80, 20);
 
         buttonGroup1.add(femaleRadiobtn);
         femaleRadiobtn.setText("Female");
@@ -151,7 +158,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(femaleRadiobtn);
-        femaleRadiobtn.setBounds(230, 90, 120, 20);
+        femaleRadiobtn.setBounds(310, 90, 120, 20);
 
         txtAge.setName("txtAge"); // NOI18N
         txtAge.addActionListener(new java.awt.event.ActionListener() {
@@ -160,30 +167,32 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtAge);
-        txtAge.setBounds(100, 50, 50, 30);
+        txtAge.setBounds(120, 50, 50, 30);
 
         lblAge.setText("Age");
+        lblAge.setPreferredSize(new java.awt.Dimension(48, 16));
         getContentPane().add(lblAge);
-        lblAge.setBounds(100, 30, 30, 13);
+        lblAge.setBounds(120, 30, 30, 16);
 
         lblBMR2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR2.setText("BMR:");
         getContentPane().add(lblBMR2);
-        lblBMR2.setBounds(20, 280, 60, 40);
+        lblBMR2.setBounds(10, 280, 60, 40);
 
         lblBMR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblBMR.setForeground(new java.awt.Color(255, 0, 0));
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(80, 280, 80, 40);
+        lblBMR.setBounds(70, 280, 80, 40);
 
         lblRange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(lblRange);
-        lblRange.setBounds(240, 240, 240, 40);
+        lblRange.setBounds(230, 240, 240, 40);
 
         lblNormalRange.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNormalRange.setText("NOTE: The normal range BMI is 18.5 - 24.9");
         getContentPane().add(lblNormalRange);
-        lblNormalRange.setBounds(240, 190, 250, 50);
+        lblNormalRange.setBounds(260, 190, 250, 50);
 
         comboActivityLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sedentary", "slightly active", "active", "extremely active" }));
         comboActivityLevel.addActionListener(new java.awt.event.ActionListener() {
@@ -192,8 +201,9 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboActivityLevel);
-        comboActivityLevel.setBounds(280, 140, 130, 19);
+        comboActivityLevel.setBounds(360, 140, 140, 27);
 
+        jComboMeasurements.setBackground(new java.awt.Color(255, 255, 102));
         jComboMeasurements.setMaximumRowCount(2);
         jComboMeasurements.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metric", "Imperial" }));
         jComboMeasurements.addActionListener(new java.awt.event.ActionListener() {
@@ -202,19 +212,23 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboMeasurements);
-        jComboMeasurements.setBounds(290, 20, 80, 20);
+        jComboMeasurements.setBounds(370, 20, 110, 20);
         getContentPane().add(lblWeight);
-        lblWeight.setBounds(70, 50, 30, 30);
+        lblWeight.setBounds(90, 50, 30, 30);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Choose Units first:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(170, 20, 120, 20);
+        jLabel2.setBounds(250, 20, 120, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Activity Level:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(180, 140, 100, 20);
+        jLabel3.setBounds(260, 140, 100, 20);
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 630, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -421,6 +435,7 @@ try (FileReader reader = new FileReader("keyvalue"))
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblBMI;
     private javax.swing.JLabel lblBMR;
