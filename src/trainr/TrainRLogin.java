@@ -38,7 +38,7 @@ public class TrainRLogin extends javax.swing.JFrame {
     public TrainRLogin()  {
         initComponents();
     }
-
+    
     //Initialized when form and program are loaded
     //This info is auto generated, do not change.
     @SuppressWarnings("unchecked")
@@ -222,178 +222,192 @@ public class TrainRLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
        
-        try (FileWriter filewriter = new FileWriter("keyvalue"))
-        
-        {
-            Properties p = new Properties();
-            p.setProperty("key", txtUserLogin.getText());
-            p.store(filewriter, "value");
+        try {
             
-            System.out.println("Property File Stored");
-        } catch (IOException ex) {    
-            Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Property File change invalid");
-        }
-        String primaryk= txtUserLogin.getText();
-        String username= txtUserLogin.getText();
-        String password= txtPasswordLogin.getText();
-        Connection conn= null;
-        Statement stmt =null;
-        ResultSet rs = null;
-        boolean error= false;
-        try{
-            int log = 1;
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
-            stmt = (Statement)conn.createStatement();
-            rs = stmt.executeQuery("select * from trainlogin");
-            
-            while (rs.next())
+            try (FileWriter filewriter = new FileWriter("keyvalue"))
+                
             {
-               if (rs.getString(1).equals(username) && rs.getString(4).equals(password))
-                                 {
-                    log = 0;
-                   
-                    break;
+                Properties p = new Properties();
+                p.setProperty("key", txtUserLogin.getText());
+                p.store(filewriter, "value");
+                
+                System.out.println("Property File Stored");
+            } catch (IOException ex) {
+                Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Property File change invalid");
+            }
+            String primaryk= txtUserLogin.getText();
+            String username= txtUserLogin.getText();
+            String password= txtPasswordLogin.getText();
+            Connection con= null;
+            boolean error= false;
+            
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+            try{
+                con =DriverManager.getConnection(connectionURL);
+                System.out.println("Connection Is Good!");
+                
+                int log = 1;
+                Statement stmt = (Statement)con.createStatement();
+                ResultSet rs = stmt.executeQuery("select * from traindata");
+                
+                while (rs.next())
+                {
+                    if (rs.getString(1).equals(username) && rs.getString(4).equals(password))
+                    {
+                        log = 0;
+                        
+                        break;
+                    }
                 }
+                
+                if (log ==0){
+                    
+                    //CloseMe(); //create class
+                    TrainRHome b = new TrainRHome();
+                    b.setVisible(true);
+                    l.dispose();
+                    
+                }
+                else  {
+                    JOptionPane.showMessageDialog(null,"Password/username is incorrect","Login System",JOptionPane.ERROR_MESSAGE);
+                    txtUserLogin.setText("");
+                    txtPasswordLogin.setText("");
+                    //txtusername.setText("");
+                    
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
             }
-            
-            if (log ==0){
-            
-                //CloseMe(); //create class
-            TrainRHome b = new TrainRHome();
-            b.setVisible(true);
-            l.dispose();
-            
-            }
-            else  {
-        JOptionPane.showMessageDialog(null,"Password/username is incorrect","Login System",JOptionPane.ERROR_MESSAGE);
-        txtUserLogin.setText("");
-        txtPasswordLogin.setText("");
-        //txtusername.setText("");
-        
+            //If there are not any errors then it will continue to the next form.
+        } catch (ClassNotFoundException ex) {    
+            Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
-            catch(SQLException e){
-           JOptionPane.showMessageDialog(null, e);
-            }
-        //If there are not any errors then it will continue to the next form. 
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-        //Create boolean to show if there are errors
-        boolean error = false;
-        
-        /*Limits between 4-50 characters, allowing one space and 
-          lower, upper case letters. */
-        if(!txtName.getText().matches("^[a-zA-Z ]*{4,50}$")){
-            /*Displays popup message that there is an invalid name
-              The invalid name will contain a field that is not listed in
-              above comment.*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid name!");
-            //This shows that there is an error
-            error = true;
-            
-        /*Limits between 2-50 characters, only allowing email formats similar
-          to user.name@host.com .*/
-        }else if(!txtEmail.getText().matches("^[a-zA-Z0-9_+&*-]+(?:\\."+ 
-                            "[a-zA-Z0-9_+&*-]+)*@" + 
-                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
-                            "A-Z]{2,50}$")){
-            /*Displays popup message that there is an invalid email
-              that it is improper format*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid email!");
-            //This shows that there is an error
-            error = true;
-            
-        /*Limits between 6-15 characters, allowing one space and 
-          lower, upper case letters. */
-        }else if(!txtUser.getText().matches("^[a-zA-Z0-9]{6,15}$")){
-            /*Displays popup message that there is an invalid username
-              The invalid username will contain a field that is not listed in
-              above comment.*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid username!");
-            //This shows that there is an error
-            error = true;
-            
-        /*Limits between 8-15 characters, must have at least one
-          lower and upper case letter, special character "@","#","$","%","^",
-          "&","+","=","!", no space, and one number. */
-        }else if(!txtPassword.getText().matches("^(?=.*[0-9])"
-                + "(?=.*[a-z])(?=.*[A-Z])"
-                + "(?=.*[@#$%^&+=!])(?=\\S+$).{8,15}$")){
-            /*Displays popup message that there is an invalid password
-              The invalid password will contain a field that is not listed in
-              above comment.*/
-            JOptionPane.showMessageDialog(null,
-                    "Please enter a valid password!");
-            //This shows that there is an error
-            error = true;
-            
-        /*If all field are checked and no errors came up then make sure it stays
-        no errors. */
-        }else {
-            error = false;
-        }
-        
-        //If there are not any errors then it will continue to the next form.
-        if (error == false){
-            //This will get rid of the login form
-            l.dispose();
-            //This will open bmi form
-            b.setVisible(true);
-        }
-        
-        //This will save the text information into a file
-        PrintWriter printWriter = null;
-        
+   
         try {
-            //Creates new file each time
-            printWriter = new PrintWriter("SignUp" + "_" + txtUser.getText() + ".txt");
             
-            //Takes in all textbox fields and saves into file
-            printWriter.println(txtName.getText());
-            printWriter.println(txtEmail.getText());
-            printWriter.println(txtUser.getText());
-            printWriter.print(txtPassword.getText());
+            //Create boolean to show if there are errors
+            boolean error = false;
             
-            printWriter.close ();
-        } catch (FileNotFoundException ex) {
+            /*Limits between 4-50 characters, allowing one space and
+            lower, upper case letters. */
+            if(!txtName.getText().matches("^[a-zA-Z ]*{4,50}$")){
+                /*Displays popup message that there is an invalid name
+                The invalid name will contain a field that is not listed in
+                above comment.*/
+                JOptionPane.showMessageDialog(null,
+                        "Please enter a valid name!");
+                //This shows that there is an error
+                error = true;
+                
+                /*Limits between 2-50 characters, only allowing email formats similar
+                to user.name@host.com .*/
+            }else if(!txtEmail.getText().matches("^[a-zA-Z0-9_+&*-]+(?:\\."+
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,50}$")){
+                /*Displays popup message that there is an invalid email
+                that it is improper format*/
+                JOptionPane.showMessageDialog(null,
+                        "Please enter a valid email!");
+                //This shows that there is an error
+                error = true;
+                
+                /*Limits between 6-15 characters, allowing one space and
+                lower, upper case letters. */
+            }else if(!txtUser.getText().matches("^[a-zA-Z0-9]{6,15}$")){
+                /*Displays popup message that there is an invalid username
+                The invalid username will contain a field that is not listed in
+                above comment.*/
+                JOptionPane.showMessageDialog(null,
+                        "Please enter a valid username!");
+                //This shows that there is an error
+                error = true;
+                
+                /*Limits between 8-15 characters, must have at least one
+                lower and upper case letter, special character "@","#","$","%","^",
+                "&","+","=","!", no space, and one number. */
+            }else if(!txtPassword.getText().matches("^(?=.*[0-9])"
+                    + "(?=.*[a-z])(?=.*[A-Z])"
+                    + "(?=.*[@#$%^&+=!])(?=\\S+$).{8,15}$")){
+                /*Displays popup message that there is an invalid password
+                The invalid password will contain a field that is not listed in
+                above comment.*/
+                JOptionPane.showMessageDialog(null,
+                        "Please enter a valid password!");
+                //This shows that there is an error
+                error = true;
+                
+                /*If all field are checked and no errors came up then make sure it stays
+                no errors. */
+            }else {
+                error = false;
+            }
+            
+            //If there are not any errors then it will continue to the next form.
+            if (error == false){
+                //This will get rid of the login form
+                l.dispose();
+                //This will open bmi form
+                b.setVisible(true);
+            }
+            
+            //This will save the text information into a file
+            PrintWriter printWriter = null;
+            
+            try {
+                //Creates new file each time
+                printWriter = new PrintWriter("SignUp" + "_" + txtUser.getText() + ".txt");
+                
+                //Takes in all textbox fields and saves into file
+                printWriter.println(txtName.getText());
+                printWriter.println(txtEmail.getText());
+                printWriter.println(txtUser.getText());
+                printWriter.print(txtPassword.getText());
+                
+                printWriter.close ();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //Start of Database portion of this class
+            //this is the declaration of which values go to which dataset
+            String username= txtUser.getText();
+            String password= txtPassword.getText();
+            String fullname= txtName.getText();
+            String email= txtEmail.getText();
+            
+            Connection con= null;
+            //end of declaration
+            
+            
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+            try{
+                con =DriverManager.getConnection(connectionURL);
+                System.out.println("Connection Is Good!");
+                PreparedStatement st= con.prepareStatement("insert into traindata(username,fullname,email,password)values(?,?,?,?)");
+                st.setString(1, username);
+                st.setString(2,fullname);
+                st.setString(3, email);
+                st.setString(4, password);
+                int a = st.executeUpdate();
+                if(a>0)
+                {
+                    System.out.println("Row Update");
+                }
+            }
+            catch(SQLException e){
+                System.out.println(e);
+            }
+            //End of Database portion of this class
+            
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        //Start of Database portion of this class 
-       //this is the declaration of which values go to which dataset
-       String username= txtUser.getText();
-       String password= txtPassword.getText();
-       String fullname= txtName.getText();
-       String email= txtEmail.getText();
-       PreparedStatement st= null;
-       Connection conn= null;
-       //end of declaration 
-       
-       //this inserts data, catches any errors that are thrown, and establishes a connection to the DB 
-       try {
-        conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
-        st= conn.prepareStatement("insert into trainlogin(username,fullname,email,password)values(?,?,?,?)");
-        st.setString(1, username);
-        st.setString(2,fullname);
-        st.setString(3, email);
-        st.setString(4, password);
-        int a =st.executeUpdate();
-        if(a>0)
-        {
-            System.out.println("ROW UPDATE");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Data did not save");
-        }
-       } catch(SQLException e){
-           JOptionPane.showMessageDialog(null, e);
-       }
-       //End of Database portion of this class 
         
     }//GEN-LAST:event_btnSubmitActionPerformed
 

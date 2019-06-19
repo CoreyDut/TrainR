@@ -201,7 +201,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comboActivityLevel);
-        comboActivityLevel.setBounds(360, 140, 140, 27);
+        comboActivityLevel.setBounds(360, 140, 140, 20);
 
         jComboMeasurements.setBackground(new java.awt.Color(255, 255, 102));
         jComboMeasurements.setMaximumRowCount(2);
@@ -235,88 +235,95 @@ public class TrainRBMI extends javax.swing.JFrame {
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         
-        /*Gets the entered info from textbox into variable with decimal values
-        to get exact precision*/
-        double weightEntered =  Double.parseDouble(txtPounds.getText());
-        double heightInFeet = Double.parseDouble(txtHeightFeet.getText());
-        double heightInInches = Double.parseDouble(txtHeightInch.getText());
-        double totalHeight = 0; 
-        if (jComboMeasurements.getSelectedIndex() == 1){
-        weightEntered /= 2.205; //converts pounds to kg
-        heightInInches /= 12; //inches to feet in decimal form  
-        totalHeight = heightInFeet + heightInInches;
-        totalHeight /= 3.281; //converts to meters
-        }
-        //calculates bmi
-        else if(jComboMeasurements.getSelectedIndex() == 0){
-            totalHeight = heightInFeet; //keeps meters to total height
-        }
-        BMI = (weightEntered / Math.pow(totalHeight, 2));
-        
-        //formats bmi to one decimal
-        DecimalFormat dmft = new DecimalFormat("##.#");
-        String format = dmft.format(BMI);
-        
-        DecimalFormat dmft1 = new DecimalFormat("#####");
-        
-        //sets bmi into label
-        lblBMI.setText(format);
-        
-        //calculating BMR
-        
-        int age = 0; //initializing age
-        double BMR = (10 * weightEntered) + (625 * totalHeight) - (5 * age) + gen; //calculator for the BMR
-        
-        switch(comboActivityLevel.getSelectedItem().toString()){  //calculating activity level of the person and 
-            case "sedentary":                                    // adding it to the BMR
-               BMR *= 1.2;
-               break;
-            case "slightly active":
-                BMR *= 1.375;
-                break;
-            case "active":
-                BMR *= 1.55;
-                break;
-            case "extremely active":
-                BMR *= 1.725;
-                break;
-       }
-        
-        
-        
-        String fmt2 = dmft1.format(BMR);
-        lblBMR.setText(fmt2);
-        
-        if(BMI < 18.5){                             //tells user if theyre under, over, or at a normal weight
-            lblRange.setText("You are Underweight");
-        }
-        else if(BMI >= 25){
-            lblRange.setText("You are Overweight");
-        }
-        else{
-            lblRange.setText("You are at a normal weight");
-        }
-       //Start of Database integration  
-       String BMIDB= lblBMI.getText();
-       String BMRDB= lblBMR.getText();
-       PreparedStatement st= null;
-       Connection conn= null;
-        
-       try {
-        conn = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
-        st= conn.prepareStatement("insert into trainlogin * where pkey.equals(username)(BMIDB,BMRDB)values(?,?)");
-        st.setString(1, BMIDB);
-        st.setString(2,BMRDB);
-        int a =st.executeUpdate();
-        if(a>0)
-        {
-            System.out.println("ROW UPDATE");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Data did not save");
-        }
-       } catch(SQLException e){
-           JOptionPane.showMessageDialog(null, e);
+       try {                                             
+           
+           /*Gets the entered info from textbox into variable with decimal values
+           to get exact precision*/
+           double weightEntered =  Double.parseDouble(txtPounds.getText());
+           double heightInFeet = Double.parseDouble(txtHeightFeet.getText());
+           double heightInInches = Double.parseDouble(txtHeightInch.getText());
+           double totalHeight = 0;
+           if (jComboMeasurements.getSelectedIndex() == 1){
+               weightEntered /= 2.205; //converts pounds to kg
+               heightInInches /= 12; //inches to feet in decimal form
+               totalHeight = heightInFeet + heightInInches;
+               totalHeight /= 3.281; //converts to meters
+           }
+           //calculates bmi
+           else if(jComboMeasurements.getSelectedIndex() == 0){
+               totalHeight = heightInFeet; //keeps meters to total height
+           }
+          BMI = (weightEntered / Math.pow(totalHeight, 2));
+           
+           //formats bmi to one decimal
+           DecimalFormat dmft = new DecimalFormat("##.#");
+           String format = dmft.format(BMI);
+           
+           DecimalFormat dmft1 = new DecimalFormat("#####");
+           
+           //sets bmi into label
+           lblBMI.setText(format);           
+           //calculating BMR
+           
+           int age = 0; //initializing age
+           double BMR = (10 * weightEntered) + (625 * totalHeight) - (5 * age) + gen; //calculator for the BMR
+           
+           switch(comboActivityLevel.getSelectedItem().toString()){  //calculating activity level of the person and
+               case "sedentary":                                    // adding it to the BMR
+                   BMR *= 1.2;
+                   break;
+               case "slightly active":
+                   BMR *= 1.375;
+                   break;
+               case "active":
+                   BMR *= 1.55;
+                   break;
+               case "extremely active":
+                   BMR *= 1.725;
+                   break;
+           }
+           
+           
+           
+           String fmt2 = dmft1.format(BMR);
+           lblBMR.setText(fmt2);
+           
+           if(BMI < 18.5){                             //tells user if theyre under, over, or at a normal weight
+               lblRange.setText("You are Underweight");
+           }
+           else if(BMI >= 25){
+               lblRange.setText("You are Overweight");
+           }
+           else{
+               lblRange.setText("You are at a normal weight");
+           }
+           //Start of Database integration
+          
+           double BMRDB = BMR;
+           double BMIDB = BMI;
+           Connection con= null;
+           Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+           String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+           try {
+              con =DriverManager.getConnection(connectionURL);
+              PreparedStatement st= con.prepareStatement("insert into traindata where username = pkey (BMIDB,BMRDB)values(?,?)");
+              st.setInt(1, (int) BMIDB);
+              st.setInt(2, (int) BMRDB);
+               int a =st.executeUpdate();
+               if(a>0)
+               {
+                   System.out.println("ROW UPDATE");
+               }
+               else{
+                   JOptionPane.showMessageDialog(null, "Data did not save");
+               }
+           } catch(SQLException e){
+               JOptionPane.showMessageDialog(null, e);
+           }
+           
+           
+       } catch(ClassNotFoundException ex){
+            Logger.getLogger(TrainRBMI.class.getName()).log(Level.SEVERE,null, ex);
        } 
         
         

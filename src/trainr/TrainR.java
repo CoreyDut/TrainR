@@ -16,9 +16,9 @@ public class TrainR {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         // TODO code application logic here
-    traindb dr=new traindb();
+    traindb dr= new traindb();
     }
     
 }

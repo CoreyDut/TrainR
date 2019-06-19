@@ -14,18 +14,30 @@ import java.sql.SQLException;
  *
  * @author cdutkiewicz
  */
-class traindb {
-    public traindb() throws SQLException
+public class traindb {
+    public traindb() throws ClassNotFoundException
     {
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/traindata","train","train");
-        PreparedStatement st= con.prepareStatement("insert into trainlogin(username,fullname)values(?,?)");
+     Connection con = null;
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+        try{
+        con =DriverManager.getConnection(connectionURL);
+        System.out.println("Connection Is Good!");
+        PreparedStatement st= con.prepareStatement("insert into traindata(username,fullname)values(?,?)");
         st.setString(1, "david115");
         st.setString(2,"jacob camp");
         int a = st.executeUpdate();
         if(a>0)
         {
-            System.out.println("ROW UPDATE");
+            System.out.println("Row Update");
         }
+        }      
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        //return con;
+        
+        
     }
     
 }
