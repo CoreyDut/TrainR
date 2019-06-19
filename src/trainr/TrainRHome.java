@@ -1,5 +1,11 @@
 package trainr;
 //Imports TrainRLogin Class from different file.
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import trainr.TrainRBMI;
 import trainr.Goal_Calculate;
@@ -8,6 +14,8 @@ import trainr.Goal_Calculate;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -48,11 +56,54 @@ public class TrainRHome extends javax.swing.JFrame {
     //Week Counter
     int weekCounter = 1;
     
+          
+    
+    
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
         
         Start();
+        
+                 try{
+                    Connection con= null;
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+                    try{
+                        con =DriverManager.getConnection(connectionURL);
+                        System.out.println("Connection Is Good!");
+                        
+                        int log = 1;
+                        Statement stmt = (Statement)con.createStatement();
+                        ResultSet rs = stmt.executeQuery("select * from traindata");
+                        
+                        while (rs.next())
+                        {
+                            if (rs.getString(1).equals(45))
+                            {
+                                log = 0;
+                                
+                                break;
+                            }
+                        }
+                        
+                        if (log ==0){
+                            
+                        }
+                        else  {
+                            //txtUserLogin.setText("");
+                            
+                        }
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                    //If there are not any errors then it will continue to the next form.
+                }catch(ClassNotFoundException ex){
+                    Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
+                }
+                //If there are not any errors then it will continue to the next form.
+
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -134,17 +185,17 @@ public class TrainRHome extends javax.swing.JFrame {
 
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(10, 10, 60, 14);
+        jLabel1.setBounds(40, 10, 60, 14);
 
         btnComment.setForeground(new java.awt.Color(0, 204, 0));
-        btnComment.setText("Comment");
+        btnComment.setText("New Comment");
         btnComment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCommentActionPerformed(evt);
             }
         });
         panSettings.add(btnComment);
-        btnComment.setBounds(130, 70, 90, 23);
+        btnComment.setBounds(130, 40, 120, 23);
         panSettings.add(txtComment);
         txtComment.setBounds(10, 40, 100, 50);
 
@@ -156,7 +207,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnDelete);
-        btnDelete.setBounds(110, 40, 130, 23);
+        btnDelete.setBounds(130, 70, 120, 23);
 
         jButton1.setForeground(new java.awt.Color(0, 204, 0));
         jButton1.setText("Set New Goal");
@@ -166,10 +217,10 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(jButton1);
-        jButton1.setBounds(120, 10, 110, 23);
+        jButton1.setBounds(130, 10, 120, 23);
 
         getContentPane().add(panSettings);
-        panSettings.setBounds(480, 10, 240, 100);
+        panSettings.setBounds(460, 10, 260, 100);
 
         lstSunday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSunday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -278,7 +329,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane7.setBounds(770, 130, 150, 260);
 
         btnNextWeek.setForeground(new java.awt.Color(0, 0, 255));
-        btnNextWeek.setText("Next Week");
+        btnNextWeek.setLabel("Save and Exit");
         btnNextWeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextWeekActionPerformed(evt);
@@ -354,10 +405,10 @@ public class TrainRHome extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(930, 490, 100, 100);
 
-        jLabel7.setFont(new java.awt.Font("Tekton Pro", 1, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tekton Pro", 1, 40)); // NOI18N
         jLabel7.setText("Strive For Progress Not Perfection");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(190, 610, 730, 62);
+        jLabel7.setBounds(190, 610, 730, 52);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home .png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -365,7 +416,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 255));
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-10, 0, 1090, 660);
+        jPanel1.setBounds(-10, -10, 1140, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -561,9 +612,37 @@ public class TrainRHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnNextWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextWeekActionPerformed
-        
-        //This code will make a fresh start for the next week            
-        weekCounter += 1;
+           try {                                            
+               Connection con= null;
+               Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+               String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+               try {
+                   con =DriverManager.getConnection(connectionURL);
+                   PreparedStatement st= con.prepareStatement("insert into traindata where username = pkey (BMIDB,BMRDB)values(?,?)");
+                   //st.setInt(1, (int) BMIDB);
+                   //st.setInt(2, (int) BMRDB);
+                   int a =st.executeUpdate();
+                   if(a>0)
+                   {
+                       System.out.println("ROW UPDATE");
+                   }
+                   else{
+                       JOptionPane.showMessageDialog(null, "Data did not save");
+                   }
+               } catch(SQLException e){
+                   JOptionPane.showMessageDialog(null, e);
+               }
+               
+               
+           } catch(ClassNotFoundException ex){
+               Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
+           }
+           
+           
+       
+        this.dispose();
+        //This code will make a fresh start for the next week(temp removal while database work is done)            
+        /*weekCounter += 1;
         
         Next();
 
@@ -573,7 +652,7 @@ public class TrainRHome extends javax.swing.JFrame {
         
         if (weekCounter > 1){
             btnLastWeek.setEnabled(true);
-        }
+        }*/
         
     }//GEN-LAST:event_btnNextWeekActionPerformed
 
