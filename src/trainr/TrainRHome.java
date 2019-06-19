@@ -70,21 +70,21 @@ public class TrainRHome extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstSunday = new javax.swing.JList<>();
+        lstSunday = new javax.swing.JList<String>();
         prgGoalWeekly = new javax.swing.JProgressBar();
         lblProgress = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstMonday = new javax.swing.JList<>();
+        lstMonday = new javax.swing.JList<String>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        lstTuesday = new javax.swing.JList<>();
+        lstTuesday = new javax.swing.JList<String>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        lstWednesday = new javax.swing.JList<>();
+        lstWednesday = new javax.swing.JList<String>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        lstThursday = new javax.swing.JList<>();
+        lstThursday = new javax.swing.JList<String>();
         jScrollPane6 = new javax.swing.JScrollPane();
-        lstFriday = new javax.swing.JList<>();
+        lstFriday = new javax.swing.JList<String>();
         jScrollPane7 = new javax.swing.JScrollPane();
-        lstSaturday = new javax.swing.JList<>();
+        lstSaturday = new javax.swing.JList<String>();
         btnNextWeek = new javax.swing.JButton();
         btnLastWeek = new javax.swing.JButton();
         lblBMRInfo = new javax.swing.JLabel();
@@ -114,7 +114,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         lblCal.setText("Kcal.");
         getContentPane().add(lblCal);
-        lblCal.setBounds(400, 10, 31, 16);
+        lblCal.setBounds(400, 10, 31, 14);
 
         txtGoal.setEnabled(false);
         getContentPane().add(txtGoal);
@@ -123,28 +123,28 @@ public class TrainRHome extends javax.swing.JFrame {
         lblName.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblName.setText("NAME");
         getContentPane().add(lblName);
-        lblName.setBounds(60, 10, 60, 22);
+        lblName.setBounds(60, 10, 60, 24);
 
         lblGoal.setText("Goal:");
         getContentPane().add(lblGoal);
-        lblGoal.setBounds(270, 10, 40, 16);
+        lblGoal.setBounds(270, 10, 40, 14);
 
         panSettings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panSettings.setLayout(null);
 
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(10, 10, 60, 16);
+        jLabel1.setBounds(40, 10, 60, 14);
 
         btnComment.setForeground(new java.awt.Color(0, 204, 0));
-        btnComment.setText("Comment");
+        btnComment.setText("New Comment");
         btnComment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCommentActionPerformed(evt);
             }
         });
         panSettings.add(btnComment);
-        btnComment.setBounds(130, 70, 90, 29);
+        btnComment.setBounds(130, 40, 120, 23);
         panSettings.add(txtComment);
         txtComment.setBounds(10, 40, 100, 50);
 
@@ -156,7 +156,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnDelete);
-        btnDelete.setBounds(110, 40, 130, 29);
+        btnDelete.setBounds(130, 70, 120, 23);
 
         jButton1.setForeground(new java.awt.Color(0, 204, 0));
         jButton1.setText("Set New Goal");
@@ -166,10 +166,10 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(jButton1);
-        jButton1.setBounds(120, 10, 110, 29);
+        jButton1.setBounds(130, 10, 120, 23);
 
         getContentPane().add(panSettings);
-        panSettings.setBounds(480, 10, 240, 100);
+        panSettings.setBounds(460, 10, 260, 100);
 
         lstSunday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSunday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -187,11 +187,11 @@ public class TrainRHome extends javax.swing.JFrame {
 
         prgGoalWeekly.setString("50%");
         getContentPane().add(prgGoalWeekly);
-        prgGoalWeekly.setBounds(240, 40, 146, 20);
+        prgGoalWeekly.setBounds(240, 40, 146, 14);
 
         lblProgress.setText("Weekly");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(390, 40, 50, 16);
+        lblProgress.setBounds(390, 40, 50, 14);
 
         lstMonday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMonday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -285,7 +285,7 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(780, 420, 110, 29);
+        btnNextWeek.setBounds(780, 420, 110, 23);
 
         btnLastWeek.setForeground(new java.awt.Color(0, 0, 255));
         btnLastWeek.setText("Last Week");
@@ -296,39 +296,39 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(170, 420, 100, 29);
+        btnLastWeek.setBounds(170, 420, 100, 23);
 
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(480, 430, 31, 16);
+        lblBMRInfo.setBounds(480, 430, 31, 14);
 
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(520, 430, 50, 16);
+        lblBMR.setBounds(520, 430, 50, 14);
 
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(480, 400, 26, 16);
+        lblBMIInfo.setBounds(480, 400, 22, 14);
 
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(520, 400, 50, 16);
+        lblBMI.setBounds(520, 400, 50, 14);
 
         lblProgress1.setText("Progress:");
         getContentPane().add(lblProgress1);
-        lblProgress1.setBounds(180, 40, 60, 16);
+        lblProgress1.setBounds(180, 40, 60, 14);
 
         prgGoalTotal.setString("50%");
         getContentPane().add(prgGoalTotal);
-        prgGoalTotal.setBounds(240, 60, 146, 20);
+        prgGoalTotal.setBounds(240, 60, 146, 14);
 
         lblProgress2.setText("Total");
         getContentPane().add(lblProgress2);
-        lblProgress2.setBounds(390, 60, 50, 16);
+        lblProgress2.setBounds(390, 60, 50, 14);
 
         lblProgress3.setText("Progress:");
         getContentPane().add(lblProgress3);
-        lblProgress3.setBounds(180, 60, 60, 16);
+        lblProgress3.setBounds(180, 60, 60, 14);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -354,10 +354,10 @@ public class TrainRHome extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(930, 490, 100, 100);
 
-        jLabel7.setFont(new java.awt.Font("Tekton Pro", 1, 48)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tekton Pro", 1, 40)); // NOI18N
         jLabel7.setText("Strive For Progress Not Perfection");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(190, 610, 730, 58);
+        jLabel7.setBounds(190, 610, 730, 52);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home .png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -365,7 +365,7 @@ public class TrainRHome extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 255));
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-10, 0, 1090, 660);
+        jPanel1.setBounds(-10, -10, 1140, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
