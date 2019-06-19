@@ -24,7 +24,7 @@ public class TrainRHome extends javax.swing.JFrame {
     
     //Gets todays date and formats in mm/dd/yyyy, then stores in variable
     Date now = new Date();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/dd/yy");
     LocalDate localDate = LocalDate.now();
     String date = (dtf.format(localDate)); //05/28/2019
     // the day of the week spelled out completely
@@ -97,37 +97,46 @@ public class TrainRHome extends javax.swing.JFrame {
         lblProgress3 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
-        setPreferredSize(new java.awt.Dimension(864, 800));
+        setBounds(new java.awt.Rectangle(0, 23, 950, 800));
+        setPreferredSize(new java.awt.Dimension(1078, 800));
         setSize(new java.awt.Dimension(864, 600));
         getContentPane().setLayout(null);
 
         lblCal.setText("Kcal.");
         getContentPane().add(lblCal);
-        lblCal.setBounds(310, 10, 31, 16);
+        lblCal.setBounds(400, 10, 31, 16);
 
-        txtGoal.setText("jTextField1");
         txtGoal.setEnabled(false);
         getContentPane().add(txtGoal);
-        txtGoal.setBounds(240, 10, 70, 30);
+        txtGoal.setBounds(310, 0, 80, 40);
 
+        lblName.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblName.setText("NAME");
         getContentPane().add(lblName);
-        lblName.setBounds(10, 10, 31, 16);
+        lblName.setBounds(60, 10, 60, 22);
 
         lblGoal.setText("Goal:");
         getContentPane().add(lblGoal);
-        lblGoal.setBounds(200, 10, 31, 16);
+        lblGoal.setBounds(270, 10, 40, 16);
 
         panSettings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panSettings.setLayout(null);
 
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(30, 10, 50, 16);
+        jLabel1.setBounds(10, 10, 60, 16);
 
+        btnComment.setForeground(new java.awt.Color(0, 204, 0));
         btnComment.setText("Comment");
         btnComment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,10 +144,11 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnComment);
-        btnComment.setBounds(120, 70, 90, 29);
+        btnComment.setBounds(130, 70, 90, 29);
         panSettings.add(txtComment);
-        txtComment.setBounds(10, 50, 100, 40);
+        txtComment.setBounds(10, 40, 100, 50);
 
+        btnDelete.setForeground(new java.awt.Color(255, 51, 51));
         btnDelete.setText("Delete Comment");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,8 +156,9 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(btnDelete);
-        btnDelete.setBounds(120, 40, 110, 29);
+        btnDelete.setBounds(110, 40, 130, 29);
 
+        jButton1.setForeground(new java.awt.Color(0, 204, 0));
         jButton1.setText("Set New Goal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,10 +166,10 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         panSettings.add(jButton1);
-        jButton1.setBounds(100, 10, 110, 29);
+        jButton1.setBounds(120, 10, 110, 29);
 
         getContentPane().add(panSettings);
-        panSettings.setBounds(390, 10, 240, 100);
+        panSettings.setBounds(480, 10, 240, 100);
 
         lstSunday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSunday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -172,15 +183,15 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstSunday);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(730, 130, 130, 260);
+        jScrollPane1.setBounds(920, 130, 150, 260);
 
         prgGoalWeekly.setString("50%");
         getContentPane().add(prgGoalWeekly);
-        prgGoalWeekly.setBounds(150, 40, 146, 20);
+        prgGoalWeekly.setBounds(240, 40, 146, 20);
 
         lblProgress.setText("Weekly");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(300, 40, 50, 16);
+        lblProgress.setBounds(390, 40, 50, 16);
 
         lstMonday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMonday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -194,7 +205,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane2.setViewportView(lstMonday);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(10, 130, 130, 260);
+        jScrollPane2.setBounds(10, 130, 150, 260);
 
         lstTuesday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstTuesday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -208,7 +219,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane3.setViewportView(lstTuesday);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(130, 130, 130, 260);
+        jScrollPane3.setBounds(160, 130, 150, 260);
 
         lstWednesday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstWednesday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -222,7 +233,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane4.setViewportView(lstWednesday);
 
         getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(250, 130, 130, 260);
+        jScrollPane4.setBounds(310, 130, 150, 260);
 
         lstThursday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstThursday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -236,7 +247,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane5.setViewportView(lstThursday);
 
         getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(370, 130, 130, 260);
+        jScrollPane5.setBounds(460, 130, 150, 260);
 
         lstFriday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstFriday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -250,7 +261,7 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane6.setViewportView(lstFriday);
 
         getContentPane().add(jScrollPane6);
-        jScrollPane6.setBounds(490, 130, 130, 260);
+        jScrollPane6.setBounds(610, 130, 160, 260);
 
         lstSaturday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstSaturday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -264,8 +275,9 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane7.setViewportView(lstSaturday);
 
         getContentPane().add(jScrollPane7);
-        jScrollPane7.setBounds(610, 130, 130, 260);
+        jScrollPane7.setBounds(770, 130, 150, 260);
 
+        btnNextWeek.setForeground(new java.awt.Color(0, 0, 255));
         btnNextWeek.setText("Next Week");
         btnNextWeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,8 +285,9 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(630, 450, 110, 29);
+        btnNextWeek.setBounds(780, 420, 110, 29);
 
+        btnLastWeek.setForeground(new java.awt.Color(0, 0, 255));
         btnLastWeek.setText("Last Week");
         btnLastWeek.setEnabled(false);
         btnLastWeek.addActionListener(new java.awt.event.ActionListener() {
@@ -283,39 +296,39 @@ public class TrainRHome extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(20, 450, 100, 29);
+        btnLastWeek.setBounds(170, 420, 100, 29);
 
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(270, 460, 31, 16);
+        lblBMRInfo.setBounds(480, 430, 31, 16);
 
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(310, 460, 50, 16);
+        lblBMR.setBounds(520, 430, 50, 16);
 
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(270, 430, 26, 16);
+        lblBMIInfo.setBounds(480, 400, 26, 16);
 
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(310, 430, 50, 16);
+        lblBMI.setBounds(520, 400, 50, 16);
 
         lblProgress1.setText("Progress:");
         getContentPane().add(lblProgress1);
-        lblProgress1.setBounds(90, 40, 50, 16);
+        lblProgress1.setBounds(180, 40, 60, 16);
 
         prgGoalTotal.setString("50%");
         getContentPane().add(prgGoalTotal);
-        prgGoalTotal.setBounds(150, 60, 146, 20);
+        prgGoalTotal.setBounds(240, 60, 146, 20);
 
         lblProgress2.setText("Total");
         getContentPane().add(lblProgress2);
-        lblProgress2.setBounds(300, 60, 50, 16);
+        lblProgress2.setBounds(390, 60, 50, 16);
 
         lblProgress3.setText("Progress:");
         getContentPane().add(lblProgress3);
-        lblProgress3.setBounds(90, 60, 50, 16);
+        lblProgress3.setBounds(180, 60, 60, 16);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -323,7 +336,36 @@ public class TrainRHome extends javax.swing.JFrame {
         jScrollPane9.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane9);
-        jScrollPane9.setBounds(630, 10, 230, 113);
+        jScrollPane9.setBounds(730, 10, 230, 100);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home 3.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(700, 500, 110, 100);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home 4.png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(230, 490, 140, 110);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home 5.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 490, 100, 100);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home2.png"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(930, 490, 100, 100);
+
+        jLabel7.setFont(new java.awt.Font("Tekton Pro", 1, 48)); // NOI18N
+        jLabel7.setText("Strive For Progress Not Perfection");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(190, 610, 730, 58);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/home .png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(470, 490, 100, 100);
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(-10, 0, 1090, 660);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -722,6 +764,13 @@ public class TrainRHome extends javax.swing.JFrame {
     private javax.swing.JButton btnNextWeek;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
