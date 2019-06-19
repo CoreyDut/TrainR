@@ -2,11 +2,32 @@ package trainr;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static trainr.TrainRLogin.l;
 
 public class Goal_Calculate extends javax.swing.JFrame {
+                                
+            
+               
+            //If there are not any errors then it will continue to the next form.
+        
 
+
+
+    
+    
+    
+    
     /*IMPORTANT*/private int BMR = 2000; //*** Placeholder value. Replace with user BMR.***
     /*IMPORTANT*/private int weeksChosen = 0; //The number of weeks chosen by the user.
     /*IMPORTANT*/private int overallGoal = 0;//Overall user goal in calories
@@ -34,8 +55,49 @@ public class Goal_Calculate extends javax.swing.JFrame {
      */
     public Goal_Calculate() {
         initComponents();
+        System.out.println(BMR);
+            try{
+                    Connection con= null;
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+                    try{
+                        con =DriverManager.getConnection(connectionURL);
+                        System.out.println("Connection Is Good!");
+                        
+                        int log = 1;
+                        Statement stmt = (Statement)con.createStatement();
+                        ResultSet rs = stmt.executeQuery("select * from traindata");
+                        
+                        while (rs.next())
+                        {
+                            if (rs.getString(1).equals(45))
+                            {
+                                log = 0;
+                                
+                                break;
+                            }
+                        }
+                        
+                        if (log ==0){
+                            
+                        }
+                        else  {
+                            //txtUserLogin.setText("");
+                            
+                        }
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                    //If there are not any errors then it will continue to the next form.
+                }catch(ClassNotFoundException ex){
+                    Logger.getLogger(Goal_Calculate.class.getName()).log(Level.SEVERE,null, ex);
+                }
+                //If there are not any errors then it will continue to the next form.
+}
+
+
         //printValues();
-    }
+    
     
     private void printValues(){
         /*This method is used to print values to the console, for the purposes
@@ -392,12 +454,39 @@ public class Goal_Calculate extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmGoalbtnMouseClicked
 
     private void saveBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseReleased
-        /*ADD CODE TO PASS VARIABLES TO DATABASE.
-        Variables to be Passed: 
-        private int weeksChosen; (line 16)
-        private int overallGoal; (line 17)
-        private int weeklyGoal; (line 18)
-        */
+           try {                                      
+               /*ADD CODE TO PASS VARIABLES TO DATABASE.
+               Variables to be Passed:
+               private int weeksChosen; (line 16)
+               private int overallGoal; (line 17)
+               private int weeklyGoal; (line 18)
+               */
+               Connection con= null;
+               Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+               String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+               try {
+                   con =DriverManager.getConnection(connectionURL);
+                   PreparedStatement st= con.prepareStatement("insert into traindata where username = pkey (BMIDB,BMRDB)values(?,?)");
+                   //st.setInt(1, (int) BMIDB);
+                   //st.setInt(2, (int) BMRDB);
+                   int a =st.executeUpdate();
+                   if(a>0)
+                   {
+                       System.out.println("ROW UPDATE");
+                   }
+                   else{
+                       JOptionPane.showMessageDialog(null, "Data did not save");
+                   }
+               } catch(SQLException e){
+                   JOptionPane.showMessageDialog(null, e);
+               }
+               
+               
+           } catch(ClassNotFoundException ex){
+               Logger.getLogger(Goal_Calculate.class.getName()).log(Level.SEVERE,null, ex);
+           }
+           
+        
     }//GEN-LAST:event_saveBtnMouseReleased
 
     private void exitBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitBtnMouseReleased

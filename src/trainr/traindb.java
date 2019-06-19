@@ -6,6 +6,7 @@
 package trainr;
 
 
+import com.dosse.upnp.UPnP;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +25,7 @@ public class traindb {
         con =DriverManager.getConnection(connectionURL);
         System.out.println("Connection Is Good!");
         PreparedStatement st= con.prepareStatement("insert into traindata(username,fullname)values(?,?)");
-        st.setString(1, "david115");
+        st.setString(1, "david11555");
         st.setString(2,"jacob camp");
         int a = st.executeUpdate();
         if(a>0)
