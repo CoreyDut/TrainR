@@ -1,6 +1,7 @@
 package trainr;
 
 //Popup display imports
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 //File imports
@@ -275,6 +276,8 @@ public class TrainRLogin extends javax.swing.JFrame {
                     //CloseMe(); //create class
                     TrainRHome b = new TrainRHome();
                     b.setVisible(true);
+                    b.setBounds(0, 0, 1140, 800);
+                    b.setBackground(Color.blue);
                     l.setVisible(false);
                     
                 }
