@@ -236,7 +236,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
-        
+        //System.out.println(TrainRLogin.txtUserLogin.getText()); verifys primary key 
        try {                                             
            
            /*Gets the entered info from textbox into variable with decimal values

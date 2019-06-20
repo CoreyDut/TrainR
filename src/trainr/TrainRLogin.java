@@ -418,6 +418,9 @@ public class TrainRLogin extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    txtUserLogin = txtUser; //changing for primary key
+    //use txtuserlogin for all forms    
+            
         
     }//GEN-LAST:event_btnSubmitActionPerformed
  public String key;
