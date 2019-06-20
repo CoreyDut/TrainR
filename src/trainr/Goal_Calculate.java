@@ -27,8 +27,8 @@ public class Goal_Calculate extends javax.swing.JFrame {
     
     
     
-    
-    /*IMPORTANT*/private int BMR = 2000; //*** Placeholder value. Replace with user BMR.***
+
+    /*IMPORTANT*/private int BMR = 0; //*** Placeholder value. Replace with user BMR.***
     /*IMPORTANT*/private int weeksChosen = 0; //The number of weeks chosen by the user.
     /*IMPORTANT*/private int overallGoal = 0;//Overall user goal in calories
     /*IMPORTANT*/private int weeklyGoal = 0;//Weekly goal of the user based on Overall goal and weeks.
@@ -55,36 +55,28 @@ public class Goal_Calculate extends javax.swing.JFrame {
      */
     public Goal_Calculate() {
         initComponents();
-        System.out.println(BMR);
+        
             try{
                     Connection con= null;
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
                     try{
+                        String query = "SELECT username, BMRDB FROM traindata where username IN (?)";
                         con =DriverManager.getConnection(connectionURL);
                         System.out.println("Connection Is Good!");
-                        
+                        String  pkey = "CoreyD";
                         int log = 1;
-                        Statement stmt = (Statement)con.createStatement();
-                        ResultSet rs = stmt.executeQuery("select * from traindata");
+                        PreparedStatement st= con.prepareStatement(query);
+                        st.setString(1, pkey);
+                        System.out.println(pkey);
                         
+                        ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
-                            if (rs.getString(1).equals(45))
-                            {
-                                log = 0;
-                                
-                                break;
-                            }
+                            BMR = (rs.getInt("BMRDB"));
+                            System.out.println(BMR);
                         }
-                        
-                        if (log ==0){
-                            
-                        }
-                        else  {
-                            //txtUserLogin.setText("");
-                            
-                        }
+                
                     }catch(SQLException e){
                         JOptionPane.showMessageDialog(null, e);
                     }
@@ -92,6 +84,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
                 }catch(ClassNotFoundException ex){
                     Logger.getLogger(Goal_Calculate.class.getName()).log(Level.SEVERE,null, ex);
                 }
+           
                 //If there are not any errors then it will continue to the next form.
 }
 
@@ -424,7 +417,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         
                 overallTextField.setText(Integer.toString(userGoalCalories));
                 overallGoal = userGoalCalories;
-
+                System.out.println(userGoalCalories);
             }else{
                 textArea1.setText("Based on your BMR and your selected weight loss goal, "
                 + "it is strongly \nrecommended that you select a weekly time frame between "
@@ -450,7 +443,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         }    
         
         weekSliderMouseReleased(evt);
-        
+        System.out.println(overallGoal);
     }//GEN-LAST:event_confirmGoalbtnMouseClicked
 
     private void saveBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseReleased
@@ -461,14 +454,22 @@ public class Goal_Calculate extends javax.swing.JFrame {
                private int overallGoal; (line 17)
                private int weeklyGoal; (line 18)
                */
+            
+               
+              int cgoal = overallGoal;
+              int wgoal = weeklyGoal;
+              int weeksdb = weeksChosen;
                Connection con= null;
                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
                try {
+                  String pkey = "CoreyD";
                    con =DriverManager.getConnection(connectionURL);
-                   PreparedStatement st= con.prepareStatement("insert into traindata where username = pkey (BMIDB,BMRDB)values(?,?)");
-                   //st.setInt(1, (int) BMIDB);
-                   //st.setInt(2, (int) BMRDB);
+                   PreparedStatement st= con.prepareStatement("update traindata set cgoal = ?, wgoal = ?, weeksdb = ? where username = ?");
+                   st.setInt(1, cgoal);
+                   st.setInt(2, wgoal);
+                   st.setInt(3, weeksdb);
+                   st.setString(4, pkey);
                    int a =st.executeUpdate();
                    if(a>0)
                    {
@@ -513,7 +514,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
             weeksDisplay.setText("Error");
             weeksDisplay.setForeground(Color.red);
         }
-        
+   
     }//GEN-LAST:event_weekSliderMouseReleased
 
     private void weeksDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weeksDisplayActionPerformed
