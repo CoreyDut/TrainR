@@ -455,6 +455,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         weekSliderMouseReleased(evt);
         //System.out.println(overallGoal);
         //printValues();
+        System.out.println(weeklyGoal);
     }//GEN-LAST:event_confirmGoalbtnMouseClicked
 
     private void saveBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseReleased
@@ -509,8 +510,9 @@ public class Goal_Calculate extends javax.swing.JFrame {
         
         int weekSliderChosen = weekSlider.getValue();
         weeklyTextField.setText(weeklyGoalCalc[weekSliderChosen - 3] + "");
-        
+        weeklyGoal = weeklyGoalCalc[weekSliderChosen - 3];
         weeksChosen = weekSliderChosen;
+        
         
         if (recommendedRangeWeeks.contains(weekSlider.getValue())){
             weeksDisplay.setText(weekSlider.getValue() + "");
