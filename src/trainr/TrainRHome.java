@@ -63,7 +63,8 @@ public class TrainRHome extends javax.swing.JFrame {
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
-        String pkey = TrainRLogin.txtUserLogin.getText();
+        //String pkey = TrainRLogin.txtUserLogin.getText();
+       String pkey = "CoreyD";
         Start();
         
                 try{
@@ -82,7 +83,7 @@ public class TrainRHome extends javax.swing.JFrame {
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
-                            calories = (rs.getInt("BMRDB"));
+                            calories = (rs.getInt("cgoal"));
                             System.out.println(calories);
                         }
                 
@@ -140,7 +141,7 @@ try{
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
-                            calories = (rs.getInt("BMIDB"));
+                            BMI = (rs.getInt("BMIDB"));
                             System.out.println(BMI);
                         }
                 
@@ -168,7 +169,7 @@ try{
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
-                            calories = (rs.getInt("BMRDB"));
+                            BMR = (rs.getInt("BMRDB"));
                             System.out.println(BMR);
                         }
                 
@@ -180,24 +181,10 @@ try{
                     Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
                 }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+                txtGoal.setText(calories + "");
+                lblBMI.setText(BMI + "");
+                lblBMR.setText(BMR + "");
+
     
     
     }
@@ -240,9 +227,6 @@ try{
         lblBMIInfo = new javax.swing.JLabel();
         lblBMI = new javax.swing.JLabel();
         lblProgress1 = new javax.swing.JLabel();
-        prgGoalTotal = new javax.swing.JProgressBar();
-        lblProgress2 = new javax.swing.JLabel();
-        lblProgress3 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
@@ -259,29 +243,34 @@ try{
         setSize(new java.awt.Dimension(864, 600));
         getContentPane().setLayout(null);
 
+        lblCal.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblCal.setText("Kcal.");
         getContentPane().add(lblCal);
-        lblCal.setBounds(400, 10, 31, 14);
+        lblCal.setBounds(390, 40, 50, 20);
 
+        txtGoal.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtGoal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtGoal.setEnabled(false);
         getContentPane().add(txtGoal);
-        txtGoal.setBounds(310, 0, 80, 40);
+        txtGoal.setBounds(240, 30, 140, 40);
 
         lblName.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblName.setText("NAME");
         getContentPane().add(lblName);
-        lblName.setBounds(60, 10, 60, 24);
+        lblName.setBounds(10, 0, 310, 24);
 
+        lblGoal.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblGoal.setText("Goal:");
         getContentPane().add(lblGoal);
-        lblGoal.setBounds(270, 10, 40, 14);
+        lblGoal.setBounds(170, 40, 40, 20);
 
         panSettings.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panSettings.setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Settings");
         panSettings.add(jLabel1);
-        jLabel1.setBounds(40, 10, 60, 14);
+        jLabel1.setBounds(30, 10, 60, 14);
 
         btnComment.setForeground(new java.awt.Color(0, 204, 0));
         btnComment.setText("New Comment");
@@ -334,11 +323,12 @@ try{
 
         prgGoalWeekly.setString("50%");
         getContentPane().add(prgGoalWeekly);
-        prgGoalWeekly.setBounds(240, 60, 146, 14);
+        prgGoalWeekly.setBounds(240, 90, 146, 14);
 
+        lblProgress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblProgress.setText("Weekly");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(400, 60, 50, 14);
+        lblProgress.setBounds(390, 80, 50, 30);
 
         lstMonday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMonday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -424,16 +414,20 @@ try{
         getContentPane().add(jScrollPane7);
         jScrollPane7.setBounds(770, 130, 150, 260);
 
+        btnNextWeek.setBackground(new java.awt.Color(255, 255, 255));
+        btnNextWeek.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnNextWeek.setForeground(new java.awt.Color(0, 0, 255));
-        btnNextWeek.setLabel("Save and Exit");
+        btnNextWeek.setText("Next Week");
         btnNextWeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextWeekActionPerformed(evt);
             }
         });
         getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(780, 420, 110, 23);
+        btnNextWeek.setBounds(780, 420, 110, 40);
 
+        btnLastWeek.setBackground(new java.awt.Color(255, 255, 255));
+        btnLastWeek.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnLastWeek.setForeground(new java.awt.Color(0, 0, 255));
         btnLastWeek.setText("Last Week");
         btnLastWeek.setEnabled(false);
@@ -443,39 +437,32 @@ try{
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(170, 420, 100, 23);
+        btnLastWeek.setBounds(150, 420, 120, 40);
 
+        lblBMRInfo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(480, 430, 31, 14);
+        lblBMRInfo.setBounds(501, 430, 50, 20);
 
+        lblBMR.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(520, 430, 50, 14);
+        lblBMR.setBounds(560, 430, 50, 20);
 
+        lblBMIInfo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(480, 400, 22, 14);
+        lblBMIInfo.setBounds(360, 430, 50, 20);
 
+        lblBMI.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(520, 400, 50, 14);
+        lblBMI.setBounds(420, 430, 50, 20);
 
+        lblProgress1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblProgress1.setText("Progress:");
         getContentPane().add(lblProgress1);
-        lblProgress1.setBounds(180, 60, 60, 14);
-
-        prgGoalTotal.setString("50%");
-        getContentPane().add(prgGoalTotal);
-        prgGoalTotal.setBounds(240, 80, 146, 14);
-
-        lblProgress2.setText("Total");
-        getContentPane().add(lblProgress2);
-        lblProgress2.setBounds(400, 80, 50, 14);
-
-        lblProgress3.setText("Progress:");
-        getContentPane().add(lblProgress3);
-        lblProgress3.setBounds(180, 80, 60, 14);
+        lblProgress1.setBounds(170, 80, 60, 30);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -510,9 +497,9 @@ try{
         getContentPane().add(jLabel2);
         jLabel2.setBounds(470, 490, 100, 100);
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1140, 800);
+        jPanel1.setBounds(0, 0, 1100, 820);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1010,8 +997,6 @@ try{
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblProgress;
     private javax.swing.JLabel lblProgress1;
-    private javax.swing.JLabel lblProgress2;
-    private javax.swing.JLabel lblProgress3;
     private javax.swing.JList<String> lstFriday;
     private javax.swing.JList<String> lstMonday;
     private javax.swing.JList<String> lstSaturday;
@@ -1020,7 +1005,6 @@ try{
     private javax.swing.JList<String> lstTuesday;
     private javax.swing.JList<String> lstWednesday;
     private javax.swing.JPanel panSettings;
-    private javax.swing.JProgressBar prgGoalTotal;
     private javax.swing.JProgressBar prgGoalWeekly;
     private javax.swing.JTextField txtComment;
     private javax.swing.JTextField txtGoal;
