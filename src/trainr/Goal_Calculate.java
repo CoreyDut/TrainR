@@ -35,14 +35,14 @@ public class Goal_Calculate extends javax.swing.JFrame {
     
     
     //modifiers used in calculation.
-    private int ninetyFiveBmr = (int)Math.ceil(BMR * 0.95);
-    private int ninetyBmr = (int)Math.ceil(BMR * 0.9);
-    private int eightyFiveBmr = (int)Math.ceil(BMR * 0.85);
-    private int eightyBmr = (int)Math.ceil(BMR * 0.8);
-    private int seventyFiveBmr = (int)Math.ceil(BMR * 0.75);
-    private int seventyBmr = (int)Math.ceil(BMR * 0.7);
-    private int sixtyFiveBmr = (int)Math.ceil(BMR * 0.65);
-    private int sixtyBmr = (int)Math.ceil(BMR * 0.6);
+    private int ninetyFiveBmr;
+    private int ninetyBmr;
+    private int eightyFiveBmr;
+    private int eightyBmr;
+    private int seventyFiveBmr; 
+    private int seventyBmr;
+    private int sixtyFiveBmr;
+    private int sixtyBmr;
     
     //Arrays used in calculation and for short term data storage.
     private int[] weeklyGoalCalc, dailyGoalCalc, adjustedBMRCalc;
@@ -84,6 +84,15 @@ public class Goal_Calculate extends javax.swing.JFrame {
                 }catch(ClassNotFoundException ex){
                     Logger.getLogger(Goal_Calculate.class.getName()).log(Level.SEVERE,null, ex);
                 }
+            
+                ninetyFiveBmr = (int)Math.ceil(BMR * 0.95);
+                ninetyBmr = (int)Math.ceil(BMR * 0.9);
+                eightyFiveBmr = (int)Math.ceil(BMR * 0.85);
+                eightyBmr = (int)Math.ceil(BMR * 0.8);
+                seventyFiveBmr = (int)Math.ceil(BMR * 0.75);
+                seventyBmr = (int)Math.ceil(BMR * 0.7);
+                sixtyFiveBmr = (int)Math.ceil(BMR * 0.65);
+                sixtyBmr = (int)Math.ceil(BMR * 0.6);
            
                 //If there are not any errors then it will continue to the next form.
 }
@@ -106,6 +115,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         System.out.println(sixtyFiveBmr);
         System.out.println(sixtyBmr);
         System.out.println(userGoal);
+        System.out.println(overallGoal);
     }
     
     @SuppressWarnings("unchecked")
@@ -417,7 +427,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
         
                 overallTextField.setText(Integer.toString(userGoalCalories));
                 overallGoal = userGoalCalories;
-                System.out.println(userGoalCalories);
+                //System.out.println(userGoalCalories);
             }else{
                 textArea1.setText("Based on your BMR and your selected weight loss goal, "
                 + "it is strongly \nrecommended that you select a weekly time frame between "
@@ -443,7 +453,8 @@ public class Goal_Calculate extends javax.swing.JFrame {
         }    
         
         weekSliderMouseReleased(evt);
-        System.out.println(overallGoal);
+        //System.out.println(overallGoal);
+        //printValues();
     }//GEN-LAST:event_confirmGoalbtnMouseClicked
 
     private void saveBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseReleased
