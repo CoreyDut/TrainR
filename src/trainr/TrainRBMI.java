@@ -300,7 +300,7 @@ public class TrainRBMI extends javax.swing.JFrame {
                lblRange.setText("You are at a normal weight");
            }
            //Start of Database integration
-           String pkey = "CoreyD";
+           String pkey = TrainRLogin.txtUserLogin.getText();
            //String pkey = TrainRLogin.txtUser.getText();
            
            double BMRDB = BMR;
@@ -329,7 +329,7 @@ public class TrainRBMI extends javax.swing.JFrame {
        } catch(ClassNotFoundException ex){
             Logger.getLogger(TrainRBMI.class.getName()).log(Level.SEVERE,null, ex);
        } 
-        String pkey = "CoreyD";
+        String pkey = TrainRLogin.txtUserLogin.getText();
            //String pkey = TrainRLogin.txtUser.getText();
            
            double BMIDB = BMI;
@@ -441,18 +441,6 @@ public class TrainRBMI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrainRBMI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-try (FileReader reader = new FileReader("keyvalue"))
-       {
-           Properties p = new Properties();
-           p.load(reader);
-           String pkey = p.getProperty(("key"));
-           System.out.println(pkey);
-           
-       } catch (Exception e){
-           System.out.println("Did not pull properly");
-           e.printStackTrace();
-
-       }
 
       
         // Create and display the form

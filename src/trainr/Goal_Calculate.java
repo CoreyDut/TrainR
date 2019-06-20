@@ -64,7 +64,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
                         String query = "SELECT username, BMRDB FROM traindata where username IN (?)";
                         con =DriverManager.getConnection(connectionURL);
                         System.out.println("Connection Is Good!");
-                        String  pkey = "CoreyD";
+                        String pkey = TrainRLogin.txtUserLogin.getText();
                         int log = 1;
                         PreparedStatement st= con.prepareStatement(query);
                         st.setString(1, pkey);
@@ -475,7 +475,7 @@ public class Goal_Calculate extends javax.swing.JFrame {
                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
                try {
-                  String pkey = "CoreyD";
+                  String pkey = TrainRLogin.txtUserLogin.getText();
                    con =DriverManager.getConnection(connectionURL);
                    PreparedStatement st= con.prepareStatement("update traindata set cgoal = ?, wgoal = ?, weeksdb = ? where username = ?");
                    st.setInt(1, cgoal);

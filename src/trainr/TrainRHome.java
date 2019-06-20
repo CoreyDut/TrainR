@@ -63,7 +63,7 @@ public class TrainRHome extends javax.swing.JFrame {
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
-        String pkey = "CoreyD";
+        String pkey = TrainRLogin.txtUserLogin.getText();
         Start();
         
                 try{
@@ -716,7 +716,7 @@ try{
         }
           
            String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
-           String pkey = "CoreyD";
+           String pkey = TrainRLogin.txtUserLogin.getText();
            Connection con= null;
            try {
               con =DriverManager.getConnection(connectionURL);
@@ -744,7 +744,7 @@ try{
            try {
               con =DriverManager.getConnection(connectionURL);
               PreparedStatement st= con.prepareStatement("update traindata set BMRDB = ? where username = ?");
-              st.setInt(1, (int) BMR);
+              st.setInt(1, BMR);
               st.setString(2, pkey);
                int a =st.executeUpdate();
                if(a>0)
@@ -861,8 +861,8 @@ try{
         //stored here
         prgGoalWeekly.setString("0"); //for now this will be 0. It will update as
         //goal is being completed.
-        lblBMI.setText("17"); //BMI from database. will update too
-        lblBMR.setText("1000"); //BMR from database. will uddate too
+        lblBMI.setText(String.valueOf(BMI)); //BMI from database. will update too
+        lblBMR.setText(String.valueOf(BMR)); //BMR from database. will uddate too
         
         //simpleDateformat.format(now)
         
