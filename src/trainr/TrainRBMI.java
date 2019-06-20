@@ -1,4 +1,4 @@
- package trainr;
+package trainr;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -300,23 +300,23 @@ public class TrainRBMI extends javax.swing.JFrame {
                lblRange.setText("You are at a normal weight");
            }
            //Start of Database integration
-           String pkey = TrainRLogin.txtUser.getText();
+           String pkey = "CoreyD";
+           //String pkey = TrainRLogin.txtUser.getText();
+           
            double BMRDB = BMR;
-           double BMIDB = BMI;
            Connection con= null;
-           System.out.println(pkey);
            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
            String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+          
            try {
               con =DriverManager.getConnection(connectionURL);
-              PreparedStatement st= con.prepareStatement("update traindata where username = ? (BMIDB,BMRDB)values(?,?)");
-              //st.setString(1, pkey);
-              st.setInt(2, (int) BMIDB);
-              st.setInt(3, (int) BMRDB);
+              PreparedStatement st= con.prepareStatement("update traindata set BMRDB = ? where username = ?");
+              st.setInt(1, (int) BMRDB);
+              st.setString(2, pkey);
                int a =st.executeUpdate();
                if(a>0)
                {
-                   System.out.println("ROW UPDATE");
+                System.out.println("Row Update");
                }
                else{
                    JOptionPane.showMessageDialog(null, "Data did not save");
@@ -329,8 +329,36 @@ public class TrainRBMI extends javax.swing.JFrame {
        } catch(ClassNotFoundException ex){
             Logger.getLogger(TrainRBMI.class.getName()).log(Level.SEVERE,null, ex);
        } 
-        
-        
+        String pkey = "CoreyD";
+           //String pkey = TrainRLogin.txtUser.getText();
+           
+           double BMIDB = BMI;
+           Connection con= null;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TrainRBMI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+          
+           try {
+            con =DriverManager.getConnection(connectionURL);
+            PreparedStatement st= con.prepareStatement("update traindata set BMIDB = ? where username = ?");
+            st.setInt(1, (int) BMIDB);
+            st.setString(2, pkey); 
+           int b =st.executeUpdate();
+              if(b>0)
+               {
+                System.out.println("Row Update");
+               } 
+               else{
+                   JOptionPane.showMessageDialog(null, "Data did not save");
+               }
+           } catch(SQLException e){
+               JOptionPane.showMessageDialog(null, e);
+           
+           }
+         
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
