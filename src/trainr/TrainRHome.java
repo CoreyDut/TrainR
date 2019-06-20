@@ -1,5 +1,6 @@
 package trainr;
 //Imports TrainRLogin Class from different file.
+import java.awt.GraphicsConfiguration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +25,17 @@ public class TrainRHome extends javax.swing.JFrame {
   //TrainRLogin l = new TrainRLogin();
     /*Gets new instance of TrainRBMI class so it can be referenced 
     in this class.*/
-    static TrainRBMI TrainRBMI = new TrainRBMI();
+    
+
+    public TrainRHome(GraphicsConfiguration gc) {
+        super(gc);
+    }
+
+    @Override
+    public void setBounds(int x, int y, int width, int height) {
+        super.setBounds(0, 0, 1140, 800); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     /*Gets new instance of Goal_Calculate class so it can be referenced 
     in this class.*/
@@ -46,16 +57,16 @@ public class TrainRHome extends javax.swing.JFrame {
     DefaultListModel objFriday = new DefaultListModel();
     DefaultListModel objSaturday = new DefaultListModel();
     DefaultListModel objSunday = new DefaultListModel();
-    int BMR = 0;
-    int BMI = 0;
-    int calories = 20000; //from database
-    int weeks = 20; //from database
-    int dailyCal = (calories / weeks) / 7; //calculates daily calorie value
+    int BMR = 1;
+    int BMI = 1;
+    int calories = 1; //from database
+    int weeks = 1; //from database
     //Start with two so be 100% when complete
     int progressWeekly = 2;
-    String dailyStrCal = Integer.toString(dailyCal);
     //Week Counter
     int weekCounter = 1;
+    int dailyCal = 1;
+    String dailyStrCal = "";
     
           
     
@@ -63,9 +74,9 @@ public class TrainRHome extends javax.swing.JFrame {
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
-        //String pkey = TrainRLogin.txtUserLogin.getText();
-       String pkey = "CoreyD";
-        Start();
+        String pkey = TrainRLogin.txtUserLogin.getText();
+       //String pkey = "CoreyD";
+        
         
                 try{
                     Connection con= null;
@@ -78,13 +89,13 @@ public class TrainRHome extends javax.swing.JFrame {
                         int log = 1;
                         PreparedStatement st= con.prepareStatement(query);
                         st.setString(1, pkey);
-                        System.out.println(pkey);
+                        //System.out.println(pkey);
                         
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
                             calories = (rs.getInt("cgoal"));
-                            System.out.println(calories);
+                            //System.out.println(calories);
                         }
                 
                     }catch(SQLException e){
@@ -103,17 +114,17 @@ try{
                     try{
                         String query = "SELECT username, weeksdb FROM traindata where username IN (?)";
                         con =DriverManager.getConnection(connectionURL);
-                        System.out.println("Connection Is Good!");
+                        //System.out.println("Connection Is Good!");
                         int log = 1;
                         PreparedStatement st= con.prepareStatement(query);
                         st.setString(1, pkey);
-                        System.out.println(pkey);
+                        //System.out.println(pkey);
                         
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
                             weeks = (rs.getInt("weeksdb"));
-                            System.out.println(weeks);
+                            //System.out.println(weeks);
                         }
                 
                     }catch(SQLException e){
@@ -132,17 +143,17 @@ try{
                     try{
                         String query = "SELECT username, BMIDB FROM traindata where username IN (?)";
                         con =DriverManager.getConnection(connectionURL);
-                        System.out.println("Connection Is Good!");
+                        //System.out.println("Connection Is Good!");
                         int log = 1;
                         PreparedStatement st= con.prepareStatement(query);
                         st.setString(1, pkey);
-                        System.out.println(pkey);
+                        //System.out.println(pkey);
                         
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
                             BMI = (rs.getInt("BMIDB"));
-                            System.out.println(BMI);
+                            //System.out.println(BMI);
                         }
                 
                     }catch(SQLException e){
@@ -160,17 +171,17 @@ try{
                     try{
                         String query = "SELECT username, BMRDB FROM traindata where username IN (?)";
                         con =DriverManager.getConnection(connectionURL);
-                        System.out.println("Connection Is Good!");
+                        //System.out.println("Connection Is Good!");
                         int log = 1;
                         PreparedStatement st= con.prepareStatement(query);
                         st.setString(1, pkey);
-                        System.out.println(pkey);
+                        //System.out.println(pkey);
                         
                         ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
                             BMR = (rs.getInt("BMRDB"));
-                            System.out.println(BMR);
+                            //System.out.println(BMR);
                         }
                 
                     }catch(SQLException e){
@@ -180,10 +191,15 @@ try{
                 }catch(ClassNotFoundException ex){
                     Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
                 }
-    
+               
                 txtGoal.setText(calories + "");
                 lblBMI.setText(BMI + "");
                 lblBMR.setText(BMR + "");
+                dailyCal = (calories / weeks) / 7;
+                
+                Start();
+
+                //System.out.println(dailyCal);
 
     
     
@@ -220,7 +236,6 @@ try{
         lstFriday = new javax.swing.JList<String>();
         jScrollPane7 = new javax.swing.JScrollPane();
         lstSaturday = new javax.swing.JList<String>();
-        btnNextWeek = new javax.swing.JButton();
         btnLastWeek = new javax.swing.JButton();
         lblBMRInfo = new javax.swing.JLabel();
         lblBMR = new javax.swing.JLabel();
@@ -236,6 +251,7 @@ try{
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        btnNextWeek = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
@@ -414,50 +430,37 @@ try{
         getContentPane().add(jScrollPane7);
         jScrollPane7.setBounds(770, 130, 150, 260);
 
-        btnNextWeek.setBackground(new java.awt.Color(255, 255, 255));
-        btnNextWeek.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        btnNextWeek.setForeground(new java.awt.Color(0, 0, 255));
-        btnNextWeek.setText("Next Week");
-        btnNextWeek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextWeekActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnNextWeek);
-        btnNextWeek.setBounds(780, 420, 110, 40);
-
         btnLastWeek.setBackground(new java.awt.Color(255, 255, 255));
         btnLastWeek.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         btnLastWeek.setForeground(new java.awt.Color(0, 0, 255));
-        btnLastWeek.setText("Last Week");
-        btnLastWeek.setEnabled(false);
+        btnLastWeek.setText("Recalculate BMI");
         btnLastWeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLastWeekActionPerformed(evt);
             }
         });
         getContentPane().add(btnLastWeek);
-        btnLastWeek.setBounds(150, 420, 120, 40);
+        btnLastWeek.setBounds(150, 420, 130, 40);
 
-        lblBMRInfo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblBMRInfo.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lblBMRInfo.setText("BMR:");
         getContentPane().add(lblBMRInfo);
-        lblBMRInfo.setBounds(501, 430, 50, 20);
+        lblBMRInfo.setBounds(550, 430, 60, 30);
 
-        lblBMR.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblBMR.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(560, 430, 50, 20);
+        lblBMR.setBounds(610, 430, 50, 30);
 
-        lblBMIInfo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblBMIInfo.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lblBMIInfo.setText("BMI:");
         getContentPane().add(lblBMIInfo);
-        lblBMIInfo.setBounds(360, 430, 50, 20);
+        lblBMIInfo.setBounds(390, 430, 50, 27);
 
-        lblBMI.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblBMI.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(420, 430, 50, 20);
+        lblBMI.setBounds(450, 430, 50, 30);
 
         lblProgress1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblProgress1.setText("Progress:");
@@ -499,14 +502,25 @@ try{
 
         jPanel1.setBackground(new java.awt.Color(0, 255, 255));
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1100, 820);
+        jPanel1.setBounds(-10, 480, 1150, 210);
+
+        btnNextWeek.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnNextWeek.setForeground(new java.awt.Color(0, 0, 255));
+        btnNextWeek.setText("Save and Exit");
+        btnNextWeek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextWeekActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNextWeek);
+        btnNextWeek.setBounds(730, 420, 130, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLastWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastWeekActionPerformed
         //This code will make a fresh start for the next week            
-        weekCounter -= 1;
+        /*weekCounter -= 1;
         
         Clear();
         
@@ -522,7 +536,12 @@ try{
         
         if (weekCounter <= 1){
             btnLastWeek.setEnabled(false);
-        }
+        }*/
+        
+        TrainRBMI d = new TrainRBMI();
+        d.setVisible(true);
+        
+        
         
     }//GEN-LAST:event_btnLastWeekActionPerformed
 
@@ -694,9 +713,13 @@ try{
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Goal_Calculate gc = new Goal_Calculate();
+        gc.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btnNextWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextWeekActionPerformed
-           
-        try {
+         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE, null, ex);
@@ -713,7 +736,7 @@ try{
                int a =st.executeUpdate();
                if(a>0)
                {
-                System.out.println("Row Update");
+                //System.out.println("Row Update");
                }
                else{
                    JOptionPane.showMessageDialog(null, "Data did not save");
@@ -736,8 +759,8 @@ try{
                int a =st.executeUpdate();
                if(a>0)
                {
-                System.out.println("Row Update");
-                System.out.println(BMR);
+                //System.out.println("Row Update");
+                //System.out.println(BMR);
                }
                else{
                    JOptionPane.showMessageDialog(null, "Data did not save");
@@ -754,8 +777,8 @@ try{
                int a =st.executeUpdate();
                if(a>0)
                {
-                System.out.println("Row Update");
-                System.out.println(calories);
+                //System.out.println("Row Update");
+                //System.out.println(calories);
                }
                else{
                    JOptionPane.showMessageDialog(null, "Data did not save");
@@ -772,7 +795,7 @@ try{
                int a =st.executeUpdate();
                if(a>0)
                {
-                System.out.println("Row Update");
+                //System.out.println("Row Update");
                }
                else{
                    JOptionPane.showMessageDialog(null, "Data did not save");
@@ -782,13 +805,7 @@ try{
            }
            
         this.dispose();
-        
     }//GEN-LAST:event_btnNextWeekActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Goal_Calculate gc = new Goal_Calculate();
-        gc.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
  
     private void Clear(){
         objMonday.clear();
@@ -843,6 +860,8 @@ try{
     }
     
     private void Start() {
+       
+        dailyStrCal = dailyCal + "";
         lblName.setText(TrainRLogin.txtUserLogin.getText()); //Name from database store here
         txtGoal.setText(Integer.toString(calories)); //Goal from database / from Goal_calculate 
         //stored here
@@ -854,6 +873,10 @@ try{
         //simpleDateformat.format(now)
         
         //Starts all list box with the days below and the current day with date
+        
+        System.out.println(dailyStrCal);
+        System.out.println(dailyCal);
+        
         if (simpleDateformat.format(now).equals("Monday")){
             objMonday.addElement("Monday " + date);
             objMonday.addElement(dailyStrCal);
