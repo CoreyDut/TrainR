@@ -46,7 +46,8 @@ public class TrainRHome extends javax.swing.JFrame {
     DefaultListModel objFriday = new DefaultListModel();
     DefaultListModel objSaturday = new DefaultListModel();
     DefaultListModel objSunday = new DefaultListModel();
-    
+    int BMR = 0;
+    int BMI = 0;
     int calories = 20000; //from database
     int weeks = 20; //from database
     int dailyCal = (calories / weeks) / 7; //calculates daily calorie value
@@ -62,38 +63,29 @@ public class TrainRHome extends javax.swing.JFrame {
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
-        String pkey = TrainRLogin.txtUserLogin.getText();
+        String pkey = "CoreyD";
         Start();
         
-                 try{
+                try{
                     Connection con= null;
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
                     try{
+                        String query = "SELECT username, cgoal FROM traindata where username IN (?)";
                         con =DriverManager.getConnection(connectionURL);
                         System.out.println("Connection Is Good!");
-                        
                         int log = 1;
-                        Statement stmt = (Statement)con.createStatement();
-                        ResultSet rs = stmt.executeQuery("select * from traindata");
+                        PreparedStatement st= con.prepareStatement(query);
+                        st.setString(1, pkey);
+                        System.out.println(pkey);
                         
+                        ResultSet rs = st.executeQuery();
                         while (rs.next())
                         {
-                            if (rs.getString(1).equals(45))
-                            {
-                                log = 0;
-                                
-                                break;
-                            }
+                            calories = (rs.getInt("BMRDB"));
+                            System.out.println(calories);
                         }
-                        
-                        if (log ==0){
-                            
-                        }
-                        else  {
-                            //txtUserLogin.setText("");
-                            
-                        }
+                
                     }catch(SQLException e){
                         JOptionPane.showMessageDialog(null, e);
                     }
@@ -101,10 +93,115 @@ public class TrainRHome extends javax.swing.JFrame {
                 }catch(ClassNotFoundException ex){
                     Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
                 }
-                //If there are not any errors then it will continue to the next form.
+           
+            
+try{
+                    Connection con= null;
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+                    try{
+                        String query = "SELECT username, weeksdb FROM traindata where username IN (?)";
+                        con =DriverManager.getConnection(connectionURL);
+                        System.out.println("Connection Is Good!");
+                        int log = 1;
+                        PreparedStatement st= con.prepareStatement(query);
+                        st.setString(1, pkey);
+                        System.out.println(pkey);
+                        
+                        ResultSet rs = st.executeQuery();
+                        while (rs.next())
+                        {
+                            weeks = (rs.getInt("weeksdb"));
+                            System.out.println(weeks);
+                        }
+                
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                    //If there are not any errors then it will continue to the next form.
+                }catch(ClassNotFoundException ex){
+                    Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
+                }
+       
 
-        
+try{
+                    Connection con= null;
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+                    try{
+                        String query = "SELECT username, BMIDB FROM traindata where username IN (?)";
+                        con =DriverManager.getConnection(connectionURL);
+                        System.out.println("Connection Is Good!");
+                        int log = 1;
+                        PreparedStatement st= con.prepareStatement(query);
+                        st.setString(1, pkey);
+                        System.out.println(pkey);
+                        
+                        ResultSet rs = st.executeQuery();
+                        while (rs.next())
+                        {
+                            calories = (rs.getInt("BMIDB"));
+                            System.out.println(BMI);
+                        }
+                
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                    //If there are not any errors then it will continue to the next form.
+                }catch(ClassNotFoundException ex){
+                    Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
+                }
+
+try{
+                    Connection con= null;
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+                    try{
+                        String query = "SELECT username, BMRDB FROM traindata where username IN (?)";
+                        con =DriverManager.getConnection(connectionURL);
+                        System.out.println("Connection Is Good!");
+                        int log = 1;
+                        PreparedStatement st= con.prepareStatement(query);
+                        st.setString(1, pkey);
+                        System.out.println(pkey);
+                        
+                        ResultSet rs = st.executeQuery();
+                        while (rs.next())
+                        {
+                            calories = (rs.getInt("BMRDB"));
+                            System.out.println(BMR);
+                        }
+                
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+                    //If there are not any errors then it will continue to the next form.
+                }catch(ClassNotFoundException ex){
+                    Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
+                }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -612,47 +709,93 @@ public class TrainRHome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnNextWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextWeekActionPerformed
-           try {                                            
-               Connection con= null;
-               Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-               String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
-               try {
-                   con =DriverManager.getConnection(connectionURL);
-                   PreparedStatement st= con.prepareStatement("insert into traindata where username = pkey (BMIDB,BMRDB)values(?,?)");
-                   //st.setInt(1, (int) BMIDB);
-                   //st.setInt(2, (int) BMRDB);
-                   int a =st.executeUpdate();
-                   if(a>0)
-                   {
-                       System.out.println("ROW UPDATE");
-                   }
-                   else{
-                       JOptionPane.showMessageDialog(null, "Data did not save");
-                   }
-               } catch(SQLException e){
-                   JOptionPane.showMessageDialog(null, e);
+           
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+           String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
+           String pkey = "CoreyD";
+           Connection con= null;
+           try {
+              con =DriverManager.getConnection(connectionURL);
+              PreparedStatement st= con.prepareStatement("update traindata set BMIDB = ? where username = ?");
+              st.setInt(1, (int) BMI);
+              st.setString(2, pkey);
+               int a =st.executeUpdate();
+               if(a>0)
+               {
+                System.out.println("Row Update");
                }
-               
-               
-           } catch(ClassNotFoundException ex){
-               Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE,null, ex);
+               else{
+                   JOptionPane.showMessageDialog(null, "Data did not save");
+               }
+           } catch(SQLException e){
+               JOptionPane.showMessageDialog(null, e);
            }
            
-           
-        
-        this.dispose();
-        //This code will make a fresh start for the next week(temp removal while database work is done)            
-        /*weekCounter += 1;
-        
-        Next();
-
-        if (weekCounter >= weeks){
-            btnNextWeek.setEnabled(false);
+            try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TrainRHome.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (weekCounter > 1){
-            btnLastWeek.setEnabled(true);
-        }*/
+           
+           try {
+              con =DriverManager.getConnection(connectionURL);
+              PreparedStatement st= con.prepareStatement("update traindata set BMRDB = ? where username = ?");
+              st.setInt(1, (int) BMR);
+              st.setString(2, pkey);
+               int a =st.executeUpdate();
+               if(a>0)
+               {
+                System.out.println("Row Update");
+                System.out.println(BMR);
+               }
+               else{
+                   JOptionPane.showMessageDialog(null, "Data did not save");
+               }
+           } catch(SQLException e){
+               JOptionPane.showMessageDialog(null, e);
+           }
+      
+        try {
+              con =DriverManager.getConnection(connectionURL);
+              PreparedStatement st= con.prepareStatement("update traindata set cgoal = ? where username = ?");
+              st.setInt(1, (int) calories);
+              st.setString(2, pkey);
+               int a =st.executeUpdate();
+               if(a>0)
+               {
+                System.out.println("Row Update");
+                System.out.println(calories);
+               }
+               else{
+                   JOptionPane.showMessageDialog(null, "Data did not save");
+               }
+           } catch(SQLException e){
+               JOptionPane.showMessageDialog(null, e);
+           }
+           
+           try {
+              con =DriverManager.getConnection(connectionURL);
+              PreparedStatement st= con.prepareStatement("update traindata set weeksdb = ? where username = ?");
+              st.setInt(1, (int) weeks);
+              st.setString(2, pkey);
+               int a =st.executeUpdate();
+               if(a>0)
+               {
+                System.out.println("Row Update");
+               }
+               else{
+                   JOptionPane.showMessageDialog(null, "Data did not save");
+               }
+           } catch(SQLException e){
+               JOptionPane.showMessageDialog(null, e);
+           }
+           
+        this.dispose();
         
     }//GEN-LAST:event_btnNextWeekActionPerformed
 
@@ -714,7 +857,7 @@ public class TrainRHome extends javax.swing.JFrame {
     }
     
     private void Start() {
-        lblName.setText("Seth"); //Name from database store here
+        lblName.setText(TrainRLogin.txtUserLogin.getText()); //Name from database store here
         txtGoal.setText(Integer.toString(calories)); //Goal from database / from Goal_calculate 
         //stored here
         prgGoalWeekly.setString("0"); //for now this will be 0. It will update as
