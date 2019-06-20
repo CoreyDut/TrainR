@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 
 public class TrainRHome extends javax.swing.JFrame {
-
+  //TrainRLogin l = new TrainRLogin();
     /*Gets new instance of TrainRBMI class so it can be referenced 
     in this class.*/
     static TrainRBMI TrainRBMI = new TrainRBMI();
@@ -62,7 +62,7 @@ public class TrainRHome extends javax.swing.JFrame {
     // Creates new form TrainRHome
     public TrainRHome() {
         initComponents();
-        
+        String pkey = TrainRLogin.txtUserLogin.getText();
         Start();
         
                  try{
@@ -639,7 +639,7 @@ public class TrainRHome extends javax.swing.JFrame {
            }
            
            
-       
+        
         this.dispose();
         //This code will make a fresh start for the next week(temp removal while database work is done)            
         /*weekCounter += 1;

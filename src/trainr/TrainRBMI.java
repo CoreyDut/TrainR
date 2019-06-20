@@ -13,12 +13,14 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class TrainRBMI extends javax.swing.JFrame {
 
     //Creates new bmi form and stores into new class instance
     static TrainRBMI b = new TrainRBMI();
-    
+    //static TrainRLogin l = new TrainRLogin();
+
     //Creates new form TrainRBMI
     public TrainRBMI() {
         initComponents();
@@ -298,17 +300,19 @@ public class TrainRBMI extends javax.swing.JFrame {
                lblRange.setText("You are at a normal weight");
            }
            //Start of Database integration
-          
+           String pkey = TrainRLogin.txtUser.getText();
            double BMRDB = BMR;
            double BMIDB = BMI;
            Connection con= null;
+           System.out.println(pkey);
            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
            String connectionURL="jdbc:sqlserver://trainrserver.database.windows.net:1433;databaseName=traindata;user=trainrproject;password=Password123;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30";
            try {
               con =DriverManager.getConnection(connectionURL);
-              PreparedStatement st= con.prepareStatement("insert into traindata where username = pkey (BMIDB,BMRDB)values(?,?)");
-              st.setInt(1, (int) BMIDB);
-              st.setInt(2, (int) BMRDB);
+              PreparedStatement st= con.prepareStatement("update traindata where username = ? (BMIDB,BMRDB)values(?,?)");
+              //st.setString(1, pkey);
+              st.setInt(2, (int) BMIDB);
+              st.setInt(3, (int) BMRDB);
                int a =st.executeUpdate();
                if(a>0)
                {
@@ -383,7 +387,7 @@ public class TrainRBMI extends javax.swing.JFrame {
             lblheight2.setText("In");
             lblWeight.setText("Lbs");
         }
-        
+  
     }//GEN-LAST:event_jComboMeasurementsActionPerformed
 
     //Main class to run program
@@ -415,11 +419,14 @@ try (FileReader reader = new FileReader("keyvalue"))
            p.load(reader);
            String pkey = p.getProperty(("key"));
            System.out.println(pkey);
+           
        } catch (Exception e){
            System.out.println("Did not pull properly");
            e.printStackTrace();
+
        }
-        
+
+      
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

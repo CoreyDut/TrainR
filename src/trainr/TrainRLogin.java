@@ -22,8 +22,14 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import sun.security.timestamp.TSRequest;
 
 public class TrainRLogin extends javax.swing.JFrame {
+
+ 
+    
     
     //Creates new login form and stores into new class instance
     static TrainRLogin l = new TrainRLogin();
@@ -32,13 +38,15 @@ public class TrainRLogin extends javax.swing.JFrame {
     public TrainRBMI b = new TrainRBMI();
     
     //Creates new home form and stores into new class instance
-    public TrainRHome h = new TrainRHome();
-
+    //public TrainRHome h = new TrainRHome();
     //Creates new form TrainR
     public TrainRLogin()  {
         initComponents();
     }
+
     
+
+   
     //Initialized when form and program are loaded
     //This info is auto generated, do not change.
     @SuppressWarnings("unchecked")
@@ -87,17 +95,17 @@ public class TrainRLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-        btnLogin.setBounds(760, 340, 70, 29);
+        btnLogin.setBounds(760, 340, 70, 23);
 
         lblUserLogin.setText("Username: ");
         lblUserLogin.setName("lblUserLogin"); // NOI18N
         getContentPane().add(lblUserLogin);
-        lblUserLogin.setBounds(630, 250, 70, 16);
+        lblUserLogin.setBounds(630, 250, 70, 14);
 
         lblPasswordLogin.setText("Password: ");
         lblPasswordLogin.setName("lblPasswordLogin"); // NOI18N
         getContentPane().add(lblPasswordLogin);
-        lblPasswordLogin.setBounds(630, 300, 70, 16);
+        lblPasswordLogin.setBounds(630, 300, 70, 14);
 
         txtPasswordLogin.setFont(new java.awt.Font("Symbol", 0, 10)); // NOI18N
         txtPasswordLogin.setName("txtPasswordLogin"); // NOI18N
@@ -119,12 +127,12 @@ public class TrainRLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSubmit);
-        btnSubmit.setBounds(160, 380, 90, 29);
+        btnSubmit.setBounds(160, 380, 90, 23);
 
         lblName.setText("Full Name: ");
         lblName.setName("lblName"); // NOI18N
         getContentPane().add(lblName);
-        lblName.setBounds(30, 190, 80, 16);
+        lblName.setBounds(30, 190, 80, 14);
 
         lblLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblLogin.setText("Login");
@@ -145,7 +153,7 @@ public class TrainRLogin extends javax.swing.JFrame {
         lblEmail.setText("Email: ");
         lblEmail.setName("lblEmail"); // NOI18N
         getContentPane().add(lblEmail);
-        lblEmail.setBounds(30, 240, 50, 16);
+        lblEmail.setBounds(30, 240, 50, 14);
 
         txtEmail.setName("txtEmail"); // NOI18N
         txtEmail.setNextFocusableComponent(lblUser);
@@ -155,12 +163,12 @@ public class TrainRLogin extends javax.swing.JFrame {
         lblUser.setText("Username: ");
         lblUser.setName("lblUser"); // NOI18N
         getContentPane().add(lblUser);
-        lblUser.setBounds(30, 290, 70, 16);
+        lblUser.setBounds(30, 290, 70, 14);
 
         lblPassword.setText("Password: ");
         lblPassword.setName("lblPassword"); // NOI18N
         getContentPane().add(lblPassword);
-        lblPassword.setBounds(30, 340, 70, 16);
+        lblPassword.setBounds(30, 340, 70, 14);
 
         txtPassword.setFont(new java.awt.Font("Symbol", 0, 10)); // NOI18N
         txtPassword.setName("txtPassword"); // NOI18N
@@ -186,19 +194,19 @@ public class TrainRLogin extends javax.swing.JFrame {
 
         jLabel2.setText("At least one uppercase and lowercase letter");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 430, 280, 16);
+        jLabel2.setBounds(20, 430, 280, 14);
 
         jLabel3.setText("At least one number");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 450, 140, 16);
+        jLabel3.setBounds(20, 450, 140, 14);
 
         jLabel4.setText("Must use at least one special character: @ # $ % ^ & + = !");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 470, 370, 16);
+        jLabel4.setBounds(20, 470, 370, 14);
 
         jLabel5.setText("No spaces");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 490, 80, 16);
+        jLabel5.setBounds(20, 490, 80, 14);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trainr/logo.png"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -267,7 +275,7 @@ public class TrainRLogin extends javax.swing.JFrame {
                     //CloseMe(); //create class
                     TrainRHome b = new TrainRHome();
                     b.setVisible(true);
-                    l.dispose();
+                    l.setVisible(false);
                     
                 }
                 else  {
@@ -351,7 +359,7 @@ public class TrainRLogin extends javax.swing.JFrame {
             //If there are not any errors then it will continue to the next form.
             if (error == false){
                 //This will get rid of the login form
-                l.dispose();
+                l.setVisible(true);
                 //This will open bmi form
                 b.setVisible(true);
             }
@@ -375,10 +383,12 @@ public class TrainRLogin extends javax.swing.JFrame {
             }
             //Start of Database portion of this class
             //this is the declaration of which values go to which dataset
+           
             String username= txtUser.getText();
             String password= txtPassword.getText();
             String fullname= txtName.getText();
             String email= txtEmail.getText();
+            //String pkey = System.getenv(username);
             
             Connection con= null;
             //end of declaration
@@ -410,10 +420,19 @@ public class TrainRLogin extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_btnSubmitActionPerformed
-
+ public String key;
+ //static String conv = txtUserLogin.getText();
+ //public static String pkey = conv;
+ 
+ public TrainRLogin(String pkey){
+     key = pkey;
+     System.out.println(pkey);
+ }
+ 
+    
     //Main class to run program
     public static void main(String args[]) {
-
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -435,7 +454,7 @@ public class TrainRLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TrainRLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -446,8 +465,8 @@ public class TrainRLogin extends javax.swing.JFrame {
     
     //auto generated dont touch
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnSubmit;
+    public javax.swing.JButton btnLogin;
+    public javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -468,7 +487,7 @@ public class TrainRLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPasswordLogin;
-    private javax.swing.JTextField txtUser;
-    private javax.swing.JTextField txtUserLogin;
+    public static javax.swing.JTextField txtUser;
+    public static javax.swing.JTextField txtUserLogin;
     // End of variables declaration//GEN-END:variables
 }
