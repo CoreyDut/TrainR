@@ -35,6 +35,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        lblRange = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtPounds = new javax.swing.JTextField();
         txtHeightFeet = new javax.swing.JTextField();
@@ -53,14 +54,16 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblAge = new javax.swing.JLabel();
         lblBMR2 = new javax.swing.JLabel();
         lblBMR = new javax.swing.JLabel();
-        lblRange = new javax.swing.JLabel();
         lblNormalRange = new javax.swing.JLabel();
         comboActivityLevel = new javax.swing.JComboBox<String>();
         jComboMeasurements = new javax.swing.JComboBox<String>();
         lblWeight = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        btnExit = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+
+        lblRange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
@@ -74,7 +77,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setName("lblBMI"); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 240, 50, 29);
+        jLabel1.setBounds(30, 250, 60, 29);
 
         txtPounds.setName("weight"); // NOI18N
         getContentPane().add(txtPounds);
@@ -129,9 +132,10 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblBMI.setForeground(new java.awt.Color(255, 0, 0));
         lblBMI.setText("0");
         getContentPane().add(lblBMI);
-        lblBMI.setBounds(70, 230, 60, 50);
+        lblBMI.setBounds(100, 240, 60, 50);
 
         btnContinue.setBackground(new java.awt.Color(255, 0, 0));
+        btnContinue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnContinue.setForeground(new java.awt.Color(0, 0, 255));
         btnContinue.setText("Continue --->");
         btnContinue.addActionListener(new java.awt.event.ActionListener() {
@@ -179,17 +183,13 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblBMR2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR2.setText("BMR:");
         getContentPane().add(lblBMR2);
-        lblBMR2.setBounds(10, 280, 60, 40);
+        lblBMR2.setBounds(30, 290, 60, 40);
 
         lblBMR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBMR.setForeground(new java.awt.Color(255, 0, 0));
         lblBMR.setText("0");
         getContentPane().add(lblBMR);
-        lblBMR.setBounds(70, 280, 80, 40);
-
-        lblRange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(lblRange);
-        lblRange.setBounds(230, 240, 240, 40);
+        lblBMR.setBounds(100, 290, 80, 40);
 
         lblNormalRange.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNormalRange.setText("NOTE: The normal range BMI is 18.5 - 24.9");
@@ -228,9 +228,24 @@ public class TrainRBMI extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(260, 140, 100, 20);
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 630, 390);
+        btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnExit.setText("Exit");
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnExitMouseReleased(evt);
+            }
+        });
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExit);
+        btnExit.setBounds(190, 300, 130, 40);
+
+        jPanel2.setBackground(new java.awt.Color(51, 204, 255));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 650, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -418,6 +433,14 @@ public class TrainRBMI extends javax.swing.JFrame {
   
     }//GEN-LAST:event_jComboMeasurementsActionPerformed
 
+    private void btnExitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseReleased
+        this.setVisible(false);
+    }//GEN-LAST:event_btnExitMouseReleased
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExitActionPerformed
+
     //Main class to run program
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -456,6 +479,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JButton btnCalculate;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnContinue;
+    private javax.swing.JButton btnExit;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboActivityLevel;
     private javax.swing.JRadioButton femaleRadiobtn;
@@ -465,7 +489,7 @@ public class TrainRBMI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblBMI;
     private javax.swing.JLabel lblBMR;
