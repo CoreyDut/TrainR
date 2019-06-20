@@ -55,8 +55,8 @@ public class TrainRBMI extends javax.swing.JFrame {
         lblBMR = new javax.swing.JLabel();
         lblRange = new javax.swing.JLabel();
         lblNormalRange = new javax.swing.JLabel();
-        comboActivityLevel = new javax.swing.JComboBox<>();
-        jComboMeasurements = new javax.swing.JComboBox<>();
+        comboActivityLevel = new javax.swing.JComboBox<String>();
+        jComboMeasurements = new javax.swing.JComboBox<String>();
         lblWeight = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -196,7 +196,7 @@ public class TrainRBMI extends javax.swing.JFrame {
         getContentPane().add(lblNormalRange);
         lblNormalRange.setBounds(260, 190, 250, 50);
 
-        comboActivityLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sedentary", "slightly active", "active", "extremely active" }));
+        comboActivityLevel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sedentary", "slightly active", "active", "extremely active" }));
         comboActivityLevel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboActivityLevelActionPerformed(evt);
@@ -207,7 +207,7 @@ public class TrainRBMI extends javax.swing.JFrame {
 
         jComboMeasurements.setBackground(new java.awt.Color(255, 255, 102));
         jComboMeasurements.setMaximumRowCount(2);
-        jComboMeasurements.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Metric", "Imperial" }));
+        jComboMeasurements.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Metric", "Imperial" }));
         jComboMeasurements.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboMeasurementsActionPerformed(evt);

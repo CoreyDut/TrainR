@@ -218,21 +218,21 @@ try{
         btnDelete = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstSunday = new javax.swing.JList<>();
+        lstSunday = new javax.swing.JList<String>();
         prgGoalWeekly = new javax.swing.JProgressBar();
         lblProgress = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstMonday = new javax.swing.JList<>();
+        lstMonday = new javax.swing.JList<String>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        lstTuesday = new javax.swing.JList<>();
+        lstTuesday = new javax.swing.JList<String>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        lstWednesday = new javax.swing.JList<>();
+        lstWednesday = new javax.swing.JList<String>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        lstThursday = new javax.swing.JList<>();
+        lstThursday = new javax.swing.JList<String>();
         jScrollPane6 = new javax.swing.JScrollPane();
-        lstFriday = new javax.swing.JList<>();
+        lstFriday = new javax.swing.JList<String>();
         jScrollPane7 = new javax.swing.JScrollPane();
-        lstSaturday = new javax.swing.JList<>();
+        lstSaturday = new javax.swing.JList<String>();
         btnNextWeek = new javax.swing.JButton();
         btnLastWeek = new javax.swing.JButton();
         lblBMRInfo = new javax.swing.JLabel();
@@ -256,7 +256,6 @@ try{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TrainR");
         setBounds(new java.awt.Rectangle(0, 23, 950, 800));
-        setPreferredSize(new java.awt.Dimension(1078, 800));
         setSize(new java.awt.Dimension(864, 600));
         getContentPane().setLayout(null);
 
@@ -335,11 +334,11 @@ try{
 
         prgGoalWeekly.setString("50%");
         getContentPane().add(prgGoalWeekly);
-        prgGoalWeekly.setBounds(240, 40, 146, 14);
+        prgGoalWeekly.setBounds(240, 60, 146, 14);
 
         lblProgress.setText("Weekly");
         getContentPane().add(lblProgress);
-        lblProgress.setBounds(390, 40, 50, 14);
+        lblProgress.setBounds(400, 60, 50, 14);
 
         lstMonday.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMonday.setMaximumSize(new java.awt.Dimension(100, 75));
@@ -464,19 +463,19 @@ try{
 
         lblProgress1.setText("Progress:");
         getContentPane().add(lblProgress1);
-        lblProgress1.setBounds(180, 40, 60, 14);
+        lblProgress1.setBounds(180, 60, 60, 14);
 
         prgGoalTotal.setString("50%");
         getContentPane().add(prgGoalTotal);
-        prgGoalTotal.setBounds(240, 60, 146, 14);
+        prgGoalTotal.setBounds(240, 80, 146, 14);
 
         lblProgress2.setText("Total");
         getContentPane().add(lblProgress2);
-        lblProgress2.setBounds(390, 60, 50, 14);
+        lblProgress2.setBounds(400, 80, 50, 14);
 
         lblProgress3.setText("Progress:");
         getContentPane().add(lblProgress3);
-        lblProgress3.setBounds(180, 60, 60, 14);
+        lblProgress3.setBounds(180, 80, 60, 14);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -513,7 +512,7 @@ try{
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 255));
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-10, -10, 1140, 800);
+        jPanel1.setBounds(0, 0, 1140, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
