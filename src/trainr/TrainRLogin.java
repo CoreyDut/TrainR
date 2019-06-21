@@ -279,6 +279,7 @@ public class TrainRLogin extends javax.swing.JFrame {
                     b.setBounds(0, 0, 1140, 800);
                     b.setBackground(Color.blue);
                     l.setVisible(false);
+                    this.setVisible(false);
                     
                 }
                 else  {
@@ -295,6 +296,7 @@ public class TrainRLogin extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {    
             Logger.getLogger(TrainRLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
