@@ -59,6 +59,9 @@ public class TrainR {
         } catch (Throwable t) {
             System.err.println("Network error: "+t);
         }
+    
+    TrainRLogin log = new TrainRLogin();
+    log.setVisible(true);
 
     }
     
